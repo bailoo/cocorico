@@ -8,6 +8,19 @@
     {{ 'home.meta_desc'|trans({}, 'cocorico_meta') }}
 {%- endblock -%}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/vendor/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/morphext.css') }}" rel="stylesheet">
+    
+    <style>
+        .rotate, .rotate-price {
+            color: #9ad0ff;
+        }
+    </style>
+{% endblock %}
+
 {% block theme %}home-page{% endblock %}
 
 {% block layout %}
@@ -24,10 +37,7 @@
                             <div class="title-holder">
                                 <div class="title-frame">
                                     <h1>
-                                        <span class="thin-text">Lorem</span>
-                                        ipsum dolor
-                                        <span class="text">sit amet,</span>
-                                        consectetur suspendisse.
+                                       Book <span class="rotate">Sunny Leone, Guru Randhawa, your favorite Artist</span> for the price of a monthly <span class="rotate-price">Gym Membership, Dish TV Subscription, Phone Bill</span>
                                     </h1>
                                 </div>
                             </div>
@@ -126,6 +136,29 @@
                 '{{ "multiselect.num_selected"|trans({}, "cocorico") }}'
             );
         });
+    </script>
+    
+    
+    <script type="text/javascript" src="{{ asset('js/vendor/morphext.min.js') }}"></script>
+    <script type="text/javascript">
+         $(".rotate").Morphext({
+            animation: "pulse", // Overrides default "bounceIn"
+            separator: ",", // Overrides default ","
+            speed: 4000, // Overrides default 2000
+            complete: function () {
+                // Overrides default empty function
+            }
+        });
+
+        $(".rotate-price").Morphext({
+            animation: "pulse", // Overrides default "bounceIn"
+            separator: ",", // Overrides default ","
+            speed: 4000, // Overrides default 2000
+            complete: function () {
+                // Overrides default empty function
+            }
+        });
+
     </script>
 {% endblock %}
 

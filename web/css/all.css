@@ -5178,7 +5178,7 @@ span.btn:focus {
 }
 
 .home-page #header {
-    margin: 0;
+    margin-top: 20px;
 }
 
 .home-page .form-category {

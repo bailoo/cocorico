@@ -3,7 +3,7 @@
 <!-- header of the page -->
 <header id="header">
     <!-- topbar -->
-    <div class="topbar">
+    {#<div class="topbar">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>#}
 
     <div class="container">
         <div class="row">
@@ -41,7 +41,7 @@
                         </button>
                         <!-- page logo -->
                         <a class="navbar-brand" href="{{ path('cocorico_home') }}" tabindex="3">
-                            <img src="{{ asset('images/logo-sc.png') }}" alt="{{ 'nav.home.link'|trans }}" width="190">
+                            <img src="{{ asset('images/logo.png') }}" alt="{{ 'nav.home.link'|trans }}" width="190">
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,13 +58,18 @@
                                     <span id="fav-count"></span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="http://help.starclinch.com" target="_blank"
+                                   tabindex="6">Help
+                                </a>
+                            </li>
 
                             {# User info #}
                             {%- if app.user is not null and is_granted("IS_AUTHENTICATED_FULLY") -%}
                                 <li id="dashboard-dropdown" class="dropdown">
                                     <a id="dashboard-link" class="dropdown-toggle"
-                                       href="{{ path('cocorico_user_dashboard_profile_edit_about_me') }}" tabindex="6"
-                                       title="My Dashboard" data-toggle="dropdown" role="button" aria-expanded="false">
+                                       href="{{ path('cocorico_user_dashboard_profile_edit_about_me') }}" tabindex="7"
+                                       title="My Profile" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ 'nav.dashboard.link'|trans }} ({{ app.user.firstName | capitalize }})
                                         <span id="nb-unread-msg"></span>
                                         <span class="icon-down-open-mini"></span>
@@ -72,13 +77,13 @@
                                     {% include '@CocoricoCore/Frontend/Common/_nav.html.twig' with {'nav_dashboard_current':''} only %}
                                 </li>
                             {%- else -%}
-                                <li>
-                                    <a href="{{ path('cocorico_user_register') }}" tabindex="6">
+                                {#<li>
+                                    <a href="{{ path('cocorico_user_register') }}" tabindex="7">
                                         {{ 'nav.register.link'|trans }}
                                     </a>
-                                </li>
+                                </li>#}
                                 <li>
-                                    <a href="{{ path('cocorico_user_login') }}" tabindex="7">
+                                    <a href="{{ path('cocorico_user_login') }}" tabindex="8">
                                         {{ 'nav.login.link'|trans }}
                                     </a>
                                 </li>
@@ -86,10 +91,10 @@
 
 
                             {# Language switcher. #}
-                            {{ render(controller('CocoricoCoreBundle:Frontend/Language:switch', {'request': app.request} )) }}
+                            {#{{ render(controller('CocoricoCoreBundle:Frontend/Language:switch', {'request': app.request} )) }}#}
 
                             {# Currency switcher #}
-                            {% include '@CocoricoCore/Frontend/Common/_currency_switcher.html.twig' only %}
+                            {#{% include '@CocoricoCore/Frontend/Common/_currency_switcher.html.twig' only %}#}
                         </ul>
 
                         {# New listing link #}

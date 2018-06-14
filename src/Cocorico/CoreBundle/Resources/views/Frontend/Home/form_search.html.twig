@@ -11,3 +11,38 @@
 } only %}
 
 {{ form_end(form) }}
+
+<script>
+    document.getElementById("categories").removeAttribute("multiple");
+
+    document.getElementById("search").onclick = function(e){
+        e.preventDefault();
+        var location = document.getElementById("location").value;
+        location = location.replace(" ","-");
+        location = location.toLowerCase();
+        const category_id = document.getElementById("categories").value;
+        if(category_id){
+            const category = document.getElementsByTagName("option");
+            var i =0;
+            var category_name = '';
+            while(i<14){
+                const value = category[i].getAttribute('value');
+                if( value == category_id){
+                    category_name  = category[i].innerHTML;
+                    break;
+                }
+                i++;
+            }
+            category_name = category_name.replace("/","-").trim();
+            category_name = category_name.replace(" ","-");
+            category_name = category_name.toLowerCase();
+            if (location){
+                window.open("/en/book-"+category_name+"-online/"+location,"_self");
+            } else{
+                window.open("/en/book-"+category_name+"-online","_self");
+            }
+        } else{
+            alert("Please select a category to search for.");
+        }
+    }
+</script>

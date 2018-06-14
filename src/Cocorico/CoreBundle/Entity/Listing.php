@@ -116,6 +116,11 @@ class Listing extends BaseListing
      */
     private $options;
 
+    /**
+     * @ORM\Column(name="old_id", type="integer", nullable=true)
+     */
+    private $old_id;
+
 
     public function __construct()
     {
@@ -537,6 +542,19 @@ class Listing extends BaseListing
         }
 
         $this->options = $options;
+    }
+
+    public function setOldId($id){
+        $this->old_id = $id;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getOldId(){
+        return $this->old_id;
     }
 
 

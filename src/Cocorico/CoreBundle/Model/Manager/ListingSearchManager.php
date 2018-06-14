@@ -103,7 +103,7 @@ class ListingSearchManager
 
         //Dates availabilities (from MongoDB)
         $dateRange = $listingSearchRequest->getDateRange();
-        if ($dateRange && $dateRange->getStart() && $dateRange->getEnd()) {
+        if ($dateRange && $dateRange->getStart()) {
             if ($this->listingDefaultStatus == ListingAvailability::STATUS_AVAILABLE) {
                 //Get listings unavailable for searched dates
                 $listingsUnavailable = $this->getListingsAvailability(
@@ -178,11 +178,9 @@ class ListingSearchManager
 
         //Categories
         $categories = $listingSearchRequest->getCategories();
-        if (count($categories)) {
-            $queryBuilder
-                ->andWhere("llcat.category IN (:categories)")
-                ->setParameter("categories", $categories);
-        }
+        $queryBuilder
+            ->andWhere("llcat.category IN (:categories)")
+            ->setParameter("categories", $categories);
 
         //Characteristics
         $characteristics = $listingSearchRequest->getCharacteristics();

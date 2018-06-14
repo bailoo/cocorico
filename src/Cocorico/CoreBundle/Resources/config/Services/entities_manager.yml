@@ -21,6 +21,15 @@ services:
             - "%cocorico.dashboard_max_per_page%"
             - "@cocorico.mailer.twig_swift"
 
+    cocorico.listing.import.manager:
+        class: Cocorico\CoreBundle\Model\Manager\ListingImportManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
+            - "%cocorico.listing_new_is_published%"
+            - "%cocorico.dashboard_max_per_page%"
+            - "@cocorico.mailer.twig_swift"
+
     #todo: Split it in muliple services
     cocorico.booking.manager:
         class: Cocorico\CoreBundle\Model\Manager\BookingManager

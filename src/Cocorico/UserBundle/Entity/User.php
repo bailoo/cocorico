@@ -127,7 +127,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="phone_prefix", type="string", length=6, nullable=true)
      */
-    protected $phonePrefix = '+33';
+    protected $phonePrefix = '+91';
 
     /**
      * @var string
@@ -135,7 +135,6 @@ class User extends BaseUser implements ParticipantInterface
      * @ORM\Column(name="phone", type="string", length=16, nullable=true)
      */
     protected $phone;
-
 
     /**
      * @var \DateTime $birthday
@@ -149,13 +148,19 @@ class User extends BaseUser implements ParticipantInterface
      */
     protected $birthday;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="nationality", type="string", length=3, nullable=true)
      */
-    protected $nationality = "FR";
+    protected $nationality = "IN";
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=8, nullable=true)
+     */
+    protected $gender;
 
     /**
      * @var string
@@ -166,7 +171,7 @@ class User extends BaseUser implements ParticipantInterface
      *  "CocoricoRegistration", "CocoricoProfileBankAccount"
      * })
      */
-    protected $countryOfResidence = "FR";
+    protected $countryOfResidence = "IN";
 
     /**
      * @var string
@@ -699,6 +704,22 @@ class User extends BaseUser implements ParticipantInterface
     public function setNationality($nationality)
     {
         $this->nationality = $nationality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
     }
 
     /**

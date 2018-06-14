@@ -7,6 +7,14 @@ services:
             - "@cocorico.listing.manager"
             - "@cocorico_user.form.handler.registration"
 
+    #ListingImport
+    cocorico.import.handler.listing:
+        class: Cocorico\CoreBundle\Form\Handler\Frontend\ListingImportHandler
+        arguments:
+            - "@request_stack"
+            - "@cocorico.listing.import.manager"
+            - "@cocorico_user.form.handler.registration"
+
     #Booking
     cocorico.form.handler.booking:
         class: Cocorico\CoreBundle\Form\Handler\Frontend\BookingFormHandler

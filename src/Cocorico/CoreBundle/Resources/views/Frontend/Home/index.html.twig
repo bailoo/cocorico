@@ -8,6 +8,23 @@
     {{ 'home.meta_desc'|trans({}, 'cocorico_meta') }}
 {%- endblock -%}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/vendor/style.index.section.clean.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/vendor/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/morphext.css') }}" rel="stylesheet">
+    
+    <link href="{{ asset('css/vendor/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/owl.theme.css') }}" rel="stylesheet">
+    
+    <style>
+        .rotate, .rotate-price {
+            color: #9ad0ff;
+        }
+    </style>
+{% endblock %}
+
 {% block theme %}home-page{% endblock %}
 
 {% block layout %}
@@ -20,15 +37,16 @@
             <div class="visual text-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-lg-8 col-lg-push-2">
+                        <div class="col-xs-12 col-lg-12">
                             <div class="title-holder">
                                 <div class="title-frame">
                                     <h1>
-                                        <span class="thin-text">Lorem</span>
-                                        ipsum dolor
-                                        <span class="text">sit amet,</span>
-                                        consectetur suspendisse.
+                                       Book <span class="rotate">Sunny Leone, Guru Randhawa, your favorite Artist</span> for the price of a monthly <span class="rotate-price">Gym Membership, Dish TV Subscription, Phone Bill</span>
                                     </h1>
+                                    <h4 style="color:#fff;">
+                                       6437 people like you have already booked Artists on EMI. 
+                                       <br/>Try it for yourself, and make your event a success!
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -47,12 +65,10 @@
                         <img src="{{ asset('images/icon1.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
-                            <h2><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing.</a></h2>
+                            <h2><a href="#">Discover Your Entertainer</a></h2>
 
                             <p>
-                                Mipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore.
+                                Easily steer through the artist portfolios; take a sneak-peak of their stage shows & decide upon the best suited performers for your event.
                             </p>
                         </div>
                     </div>
@@ -61,12 +77,10 @@
                         <img src="{{ asset('images/icon2.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
-                            <h2><a href="#">Lorem ipsum dolor sit amet ?</a></h2>
+                            <h2><a href="#">Book to Confirm</a></h2>
 
                             <p>
-                                Mipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore.
+                                If the received quote fits your bill, confirm the artist by paying an advance through our ultra-safe payment channel. Sit-back and unwind till you enjoy the scintillating performance on the Big Day!
                             </p>
                         </div>
                     </div>
@@ -76,18 +90,251 @@
                         <img src="{{ asset('images/icon3.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
-                            <h2><a href="#">Lorem ipsum dolor sit amet, consect</a></h2>
+                            <h2><a href="#">TAILOR-MADE Quote</a></h2>
 
                             <p>
-                                Mipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore.
+                                Now, place a request to receive a “customized” quote from the chosen ones. The price quote will be sent to your mailbox at the earliest.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!--   *** event mamagement ***-->
+            <section id="" class="section">
+                <div class="container">
+                    <div class="row text-center-mobile">
+                        <div class="col-md-6">
+                            <h2>Why Event Management Companies love us?</h2>
+                            <p>Running here and there at the last minute to cater to your clienteles requirements? Fret not, we have endless options at every price bracket and location! Pick and choose performance artists and entertainers from 14 categories at very competitive prices.</p>
+                            <div class="col-sm-8 text-center">
+                                <input type="email" placeholder="Your company email" />
+                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Get Best Quotes</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p><img alt="" src="{{ asset('images/customers/event-mgmt.png') }}" class="img-responsive"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--   *** event  ***-->
+            <section id="event-management" class="section background-gray-lightest padding--small">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/70emg.png') }}" title="70 EMG" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/e2e.png') }}" title="E2E Excitee" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/eventfaq.png') }}" title="Event Faqs" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/fountainhead.png') }}" title="Fountainhead" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/wishbone.png') }}" title="Wishbone" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/event-mgmt/wizcraft.png') }}" title="Wizcraft" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section background-gray">
+                <div class="container">
+                    <div class="row text-center-mobile">
+                        <div class="col-md-6">
+                            <p><img alt="" src="{{ asset('images/customers/corporates.png') }}" class="img-responsive"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Why Corporates love us?</h2>
+                            <p>Are you an HR that runs around at the last minute to organize that awesome surprise party for the CEO? You are at the right place, sir. With over 17000 professional performance artists and entertainers that have performed in front of large audiences, we are here to ensure happy smiles on your company's employees! </p>
+                            <div class="col-sm-8 text-center">
+                                <input type="email" placeholder="Your official email" />
+                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Organize Business Event</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+            <section id="corporates" class="section background-gray-lightest padding--small" style="width:100%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/iarmy.png') }}" title="Indian Army" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/leela.png') }}" title="Leela Hotel" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/mtvflyp.png') }}" title="MTV Flyp" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/nandos.png') }}" title="Nandos" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/paytm.png') }}" title="Paytm" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/corporate/puma.png') }}" title="Puma" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="" class="section">
+                <div class="container">
+                    <div class="row text-center-mobile">
+                        <div class="col-md-6">
+                            <h2>Why Campuses love us?</h2>
+                            <p>Statistics report that 7 out of 10 college fests go below than average. Let us help you make the best college events by providing you artists at affordable rates. </p>
+                            <div class="col-sm-8 text-center">
+                                <input type="email" placeholder="Your official email" />
+                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Make My Fest Awesome</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p><img alt="" src="{{ asset('images/customers/campuses.png') }}" class="img-responsive"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+            <section id="campuses" class="section background-gray-lightest padding--small">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/bvmcpune.png') }}" title="Bharati Vidyapeeth Medical College, Pune" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/corthiruvananthapuram.png') }}" title="College of Engineering, Thiruvananthapuram" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/iitd.png') }}" title="IIT Delhi" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/kiitbhubaneswar.png') }}" title=" KIIT, Bhubaneswar" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/nitdurgapur.png') }}" title="NIT Durgapur" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-sm-4 col-md-2 col-xs-6">
+                            <div class="customer"><img src="{{ asset('images/customers/campus/srcc.png') }}" title="Shri Ram College of Commerce" data-placement="bottom" data-toggle="tooltip" alt="" class="img-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+            <section class="section no-padding-bottom" id="individuals">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8 col-lg-offset-2 text-center">
+                            <h2>Why Women who are getting married love us?</h2>
+                            <p>Mehndi, Lhengha, and Shenhais... Ah, the perfect dream! <br/>StarClinch has been instrumental in the success of countless marriages where DJs, Makeup Artists, Singers, Dancers were needed within a tight budget.<br/> You dream it, we make it happen!</p>
+                            <p class="margin-bottom--zero"><img alt="" src="{{ asset('images/customers/marriage.png') }}" class="img-responsive"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+            <section id="text" class="text-page section-inverse background-secondary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center">Calculate Your EMI</h2>
+                            <p class="lead text-center">Select your Bank, booking amount, and payment period<br/> and see your monthly EMI in real time.</p>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 35px;" onClick="ga('send', 'event', 'entertainment-on-emi', 'calculate-emi-button', 'calculate-section');">Calculate My EMI</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+                
+                        
+            <section id="testimonials" class="section testimonails background-gray-lightest">
+                <div class="container">
+                    <h2 class="text-center">
+                        What our customers say
+                    </h2>
+                    <p class="lead text-center"></p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="owl-carousel testimonials same-height-row">
+                                <li class="item">
+                                    <div class="testimonial same-height-always">
+                                        <div class="text">
+                                            <p>Had a wonderful experience interacting with the StarClinch team. Very professional. 
+    Aviral Malay performed at a private party hosted by us recently. <br/><br/>In addition to being a great performer he is a very pleasant person. We had a great evening with his melodies which made the party great fun. The guests loved it.</p>
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>
+                                            <div class="name-picture">
+                                                <img alt="" src="jazzy/img/person-3.png">
+                                                <h5>Jyotika</h5>
+                                                <p>Corporate Client</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="testimonial same-height-always">
+                                        <div class="text">
+                                            <p>I contacted StarClinch for our event in Pattaya and almost immediately got a mail response and a call back from Abhishek for my query. <br/><br/>From then on, everything was smooth as silk. Apart form that, the Artist himself stole the show at the event. 
+                                            </p>
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>
+                                            <div class="name-picture">
+                                                <img alt="" src="https://lh3.googleusercontent.com/-MfrJMJAfOL4/AAAAAAAAAAI/AAAAAAAAAAA/hxz9MrGDQ4o/w60-h60-p-rp-mo-br100/photo.jpg">
+                                                <h5>Riaz</h5>
+                                                <p>Past Client</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="testimonial same-height-always">
+                                        <div class="text">
+                                            <p>If you're starting out as a musician and don't know how to get gigs, StarClinch should be your go-to place. You won't have to chase venues and you will get good paid gigs at decent venues. Good work, StarClinch!
+                                        </p>
+
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>
+                                            <div class="name-picture">
+                                                <img alt="" src="https://lh3.googleusercontent.com/-E-zzuAUnnNA/AAAAAAAAAAI/AAAAAAAAAAA/pTPNbkJ9ecs/w60-h60-p-rp-mo-br100/photo.jpg">
+                                                <h5>Saumya</h5>
+                                                <p>Artist</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="testimonial same-height-always">
+                                        <div class="text">
+                                            <p>I have been working with StarClinch for more than 2yrs now and it has been a great experience. StarClinch has given me over 200 shows and a business of over 8 lakhs in these 2yrs. for me it has been worth subscribing and looking forward to do more business with them.
+                                        </p>
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>
+                                            <div class="name-picture">
+                                                <img alt="" src="https://lh6.googleusercontent.com/-rWeUGrOOuIk/AAAAAAAAAAI/AAAAAAAAAAA/zSyuhcnWoCY/w60-h60-p-rp-mo-br100/photo.jpg">
+                                                <h5>Smruti</h5>
+                                                <p>Artist</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+                        
+                        
             {% include 'CocoricoCoreBundle:Frontend/Home:_high_rank.html.twig'  with {
             'listings': listings
             } only %}
@@ -123,9 +370,90 @@
                     '#categories',
                     '{{ "multiselect.all_selected"|trans({}, "cocorico") }}',
                     '{{ "multiselect.none_selected"|trans({}, "cocorico") }}',
-                '{{ "multiselect.num_selected"|trans({}, "cocorico") }}'
+                    '{{ "multiselect.num_selected"|trans({}, "cocorico") }}'
             );
         });
+    </script>
+    
+    <script type="text/javascript" src="{{ asset('js/vendor/morphext.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
+    
+    <script type="text/javascript">
+         $(".rotate").Morphext({
+            animation: "pulse", // Overrides default "bounceIn"
+            separator: ",", // Overrides default ","
+            speed: 4000, // Overrides default 2000
+            complete: function () {
+                // Overrides default empty function
+            }
+        });
+
+        $(".rotate-price").Morphext({
+            animation: "pulse", // Overrides default "bounceIn"
+            separator: ",", // Overrides default ","
+            speed: 4000, // Overrides default 2000
+            complete: function () {
+                // Overrides default empty function
+            }
+        });
+        
+        if ($('.owl-carousel').length) {
+            $(".testimonials").owlCarousel({
+                items: 4,
+                itemsDesktopSmall: [1100, 3],
+                itemsTablet: [768, 2],
+                itemsMobile: [480, 1]
+            });
+        }
+        
+        $.fn.alignElementsSameHeight = function () {
+            $('.same-height-row').each(function () {
+
+                var maxHeight = 0;
+                var children = $(this).find('.same-height');
+                children.height('auto');
+                if ($(window).width() > 768) {
+                    children.each(function () {
+                        if ($(this).innerHeight() > maxHeight) {
+                            maxHeight = $(this).innerHeight();
+                        }
+                    });
+                    children.innerHeight(maxHeight);
+                }
+
+                maxHeight = 0;
+                children = $(this).find('.same-height-always');
+                children.height('auto');
+                children.each(function () {
+                    if ($(this).height() > maxHeight) {
+                        maxHeight = $(this).innerHeight();
+                    }
+                });
+                children.innerHeight(maxHeight);
+
+            });
+        }
+        
+        $(window).load(function () {
+
+            windowWidth = $(window).width();
+
+            $(this).alignElementsSameHeight();
+
+        });
+        $(window).resize(function () {
+
+            newWindowWidth = $(window).width();
+
+            if (windowWidth !== newWindowWidth) {
+                setTimeout(function () {
+                    $(this).alignElementsSameHeight();
+                }, 205);
+                windowWidth = newWindowWidth;
+            }
+
+        });
+
     </script>
 {% endblock %}
 

@@ -13,7 +13,7 @@
       </trans-unit>
       <trans-unit id="537c6d941057a83d467aadaf06db30b0a01da6b7" resname="home.feeds.section.header.title">
         <source>home.feeds.section.header.title</source>
-        <target state="new">Last news</target>
+        <target state="new">Lastest Blogs</target>
         <jms:reference-file line="6">Frontend/Home/rss_feed.html.twig</jms:reference-file>
       </trans-unit>
     </body>

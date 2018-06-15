@@ -35,6 +35,17 @@ section {
   padding-bottom: 50px;
 }
 
+#latest-artists {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+#rss-feeds {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+
 section.background-gray-lighter {
   background: #cdcdcd;
 }

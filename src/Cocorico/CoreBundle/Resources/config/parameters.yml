@@ -1,15 +1,15 @@
 parameters:
     #### Environment independant parameters. Same values in dev, staging, prod environments  ####
     #Site general infos
-    cocorico.site_name: Cocorico
-    cocorico.phone: +33(0) 1 43 79 86 30
-    cocorico.address: 67 rue de Provence, 75009
-    cocorico.short_description: 'Cocorico is collaborative consumption platform'
-    cocorico.contact_mail: contact@cocorico.io
+    cocorico.site_name: StarClinch
+    cocorico.phone: +911149047562
+    cocorico.address: Percept House, 1, Raja Dhirsain Marg, Sant Nagar, East of Kailash, New Delhi - 110065, India
+    cocorico.short_description: ''
+    cocorico.contact_mail: ishita@starclinch.com
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
-    cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"
-    cocorico.from_email: no-reply@cocorico.io
-    cocorico.webmaster_email: webmaster@cocorico.io
+    cocorico.contact_mail_obfuscated: "ishita@starclinch.com"
+    cocorico.from_email: ishita@starclinch.com
+    cocorico.webmaster_email: ishita@starclinch.com
     cocorico.vat_number: FR 12 123 456 789
     cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
 

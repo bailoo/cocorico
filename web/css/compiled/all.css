@@ -5920,6 +5920,7 @@ span.btn:focus {
     line-height: 22px;
     padding-bottom: 22px;
     padding-top: 32px;
+    border-bottom: solid 1px #cdcdcd;
 }
 
 .infoarea .info-box {

@@ -5879,7 +5879,7 @@ span.btn:focus {
 
 /* visual */
 .visual {
-    margin: 0 0 50px;
+    margin: 0px;
     background: url(../images/bg-section.png) no-repeat 50% 0 #58595b;
 }
 
@@ -5915,6 +5915,7 @@ span.btn:focus {
     color: #58595b;
     line-height: 22px;
     padding-bottom: 22px;
+    padding-top: 32px;
 }
 
 .infoarea .info-box {

@@ -4,6 +4,37 @@ section {
   padding-top: 90px;
   padding-bottom: 90px;
 }
+
+#event-management {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#corporates {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#campuses {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#individuals {
+  padding-top: 30px;
+  padding-bottom: 0px;
+}
+
+#text {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+#testimonials {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
 section.background-gray-lighter {
   background: #cdcdcd;
 }

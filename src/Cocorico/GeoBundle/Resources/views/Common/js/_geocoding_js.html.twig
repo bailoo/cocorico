@@ -89,7 +89,7 @@
             if (autoCompleteElt) {
                 autoComplete = new google.maps.places.Autocomplete(
                     autoCompleteElt,
-                    {types: ['geocode']}
+                    {types: ['(cities)']}
                 );
             }
 
@@ -117,6 +117,7 @@
                 var geocodeParams = {};
                 geocodeParams['address'] = address;
                 geocodeParams['region'] = (typeof region !== 'undefined' && region) ? region : '';
+                console.log(geocodeParams['region']);
 
                 geocoder.geocode(geocodeParams, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {

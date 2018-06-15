@@ -73,6 +73,14 @@
     document.getElementById("search").onclick = function(e){
         e.preventDefault();
         var location = document.getElementById("location").value;
+        const index = location.lastIndexOf(",");
+        console.log(index);
+        if(index == '-1'){
+            location = location.slice(0);
+        } else{
+            location = location.slice(0,index);
+        }
+        location = location.replace(", ","-");
         location = location.replace(" ","-");
         location = location.toLowerCase();
         const category_id = document.getElementById("categories").value;

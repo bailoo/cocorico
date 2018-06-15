@@ -71,6 +71,7 @@ class ListingSearchNewController extends Controller
 
             $addressType = implode(',', $parsedLocation['types']);
             $searchLocation->setAddressType($addressType);
+//            $location = explode('-',$location);
             $location = str_replace('-',' ', $location);
             $searchLocation->setAddress(ucwords(strtolower($location)));
 
@@ -420,26 +421,3 @@ class ListingSearchNewController extends Controller
     }
 
 }
-
-//object(Cocorico\CoreBundle\Model\DateRange) {
-//    ["start"]=> object(DateTime) {
-//        ["date"]=> string(26) "2018-06-15 00:00:00.000000"
-//        ["timezone_type"]=> int(3)
-//        ["timezone"]=> string(13) "Asia/Calcutta"
-//    }
-//    ["end"]=> object(DateTime) {
-//        ["date"]=> string(26) "2018-06-28 23:59:59.000000"
-//        ["timezone_type"]=> int(3)
-//        ["timezone"]=> string(13) "Asia/Calcutta"
-//    }
-//    ["nbDays"]=> NULL
-//}
-
-//date_range[start]=15/06/2018
-//date_range[end]=28/06/2018
-//time_range[start_picker]=07:15
-//      time_range[start][hour]=7
-//      time_range[start][minute]=15
-//time_range[nb_minutes]=420   hours asked converted to minutes
-//time_range[end][hour]=14
-//time_range[end][minute]=15

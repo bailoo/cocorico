@@ -29,9 +29,7 @@ vendor/
 #see .htacces.dist
 web/.htaccess
 web/bundles/
-web/css/compiled/*
 !web/css/vendor
-web/js/compiled/*
 !web/js/vendor
 
 web/test

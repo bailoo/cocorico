@@ -18,10 +18,23 @@
     <link href="{{ asset('css/vendor/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor/owl.theme.css') }}" rel="stylesheet">
     
+    <link href="{{ asset('css/vendor/dropdown/modalinput.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/dropdown/modalinput.index.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/dropdown/dropdownstyle.css') }}" rel="stylesheet">
+    
+    <script type="text/javascript" src="{{ asset('js/vendor/modernizr.custom.63321.js') }}"></script>
+   
     <style>
         .rotate, .rotate-price {
             color: #9ad0ff;
         }
+        
+        .no-spin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0 !important;
+            -moz-appearance:textfield !important;
+        }
+
     </style>
 {% endblock %}
 
@@ -50,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearchNew:searchHomeForm')) }}
+                        {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:searchHomeForm')) }}
                     </div>
                 </div>
             </div>
@@ -58,7 +71,8 @@
 
         {% block main %}
             <!-- infoarea -->
-            <div class="infoarea container">
+            <div class="infoarea container-fluid" style="background: #f7f7f7;">
+                <div class="container">
                 <div class="row">
                     <!-- info-box -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
@@ -98,6 +112,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
 
             <!--   *** event mamagement ***-->
@@ -107,9 +122,14 @@
                         <div class="col-md-6">
                             <h2>Why Event Management Companies love us?</h2>
                             <p>Running here and there at the last minute to cater to your clienteles requirements? Fret not, we have endless options at every price bracket and location! Pick and choose performance artists and entertainers from 14 categories at very competitive prices.</p>
-                            <div class="col-sm-8 text-center">
-                                <input type="email" placeholder="Your company email" />
-                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Get Best Quotes</a>
+                            <div class="col-sm-12 text-center">
+                                        <span class="input input--yoshiko-index" style="margin-top: 20px; max-width: 500px;">
+                                            <input class="input__field input__field--yoshiko-index no-spin" type="email" id="email-event" placeholder="you@agency.com"  onClick=""/>
+                                            <label class="input__label input__label--yoshiko-index" for="input-10">
+                                                <span class="input__label-content input__label-content--yoshiko-index" data-content="Your official email">Your official email</span>
+                                            </label>
+                                        </span>
+                                         <a href="#" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="return false;">Get Best Quotes for Artists</a>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -152,9 +172,14 @@
                         <div class="col-md-6">
                             <h2>Why Corporates love us?</h2>
                             <p>Are you an HR that runs around at the last minute to organize that awesome surprise party for the CEO? You are at the right place, sir. With over 17000 professional performance artists and entertainers that have performed in front of large audiences, we are here to ensure happy smiles on your company's employees! </p>
-                            <div class="col-sm-8 text-center">
-                                <input type="email" placeholder="Your official email" />
-                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Organize Business Event</a>
+                            <div class="col-sm-12 text-center">
+                                        <span class="input input--yoshiko-index" style="margin-top: 20px; max-width: 500px;">
+                                            <input class="input__field input__field--yoshiko-index no-spin" type="email" id="email-corporate" placeholder="you@company.com"  onClick=""/>
+                                            <label class="input__label input__label--yoshiko-index" for="input-10">
+                                                <span class="input__label-content input__label-content--yoshiko-index" data-content="Your official email">Your official email</span>
+                                            </label>
+                                        </span>
+                                        <a href="#" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="return false;">Organize My Corporate Event</a>
                             </div>
                         </div>
                     </div>
@@ -190,9 +215,14 @@
                         <div class="col-md-6">
                             <h2>Why Campuses love us?</h2>
                             <p>Statistics report that 7 out of 10 college fests go below than average. Let us help you make the best college events by providing you artists at affordable rates. </p>
-                            <div class="col-sm-8 text-center">
-                                <input type="email" placeholder="Your official email" />
-                                <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="">Make My Fest Awesome</a>
+                            <div class="col-sm-12 text-center">
+                                        <span class="input input--yoshiko-index" style="margin-top: 20px; max-width: 500px;">
+                                            <input class="input__field input__field--yoshiko-index no-spin" type="email" id="email-campus" placeholder="you@campus.com"  onClick=""/>
+                                            <label class="input__label input__label--yoshiko-index" for="input-10">
+                                                <span class="input__label-content input__label-content--yoshiko-index" data-content="Your official email">Your official email</span>
+                                            </label>
+                                        </span>
+                                        <a href="#" class="btn btn-primary btn-lg" style="font-size: 25px;" onClick="return false;">Make My Fest Awesome</a>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -231,7 +261,7 @@
                         <div class="col-md-12 col-lg-8 col-lg-offset-2 text-center">
                             <h2>Why Women who are getting married love us?</h2>
                             <p>Mehndi, Lhengha, and Shenhais... Ah, the perfect dream! <br/>StarClinch has been instrumental in the success of countless marriages where DJs, Makeup Artists, Singers, Dancers were needed within a tight budget.<br/> You dream it, we make it happen!</p>
-                            <p class="margin-bottom--zero"><img alt="" src="{{ asset('images/customers/marriage.png') }}" class="img-responsive"></p>
+                            <p style="margin-bottom: 0px;"><img alt="" src="{{ asset('images/customers/marriage.png') }}" class="img-responsive"></p>
                         </div>
                     </div>
                 </div>
@@ -244,7 +274,7 @@
                             <p class="lead text-center">Select your Bank, booking amount, and payment period<br/> and see your monthly EMI in real time.</p>
                             <div class="row">
                                 <div class="col-sm-12 text-center">
-                                    <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 35px;" onClick="ga('send', 'event', 'entertainment-on-emi', 'calculate-emi-button', 'calculate-section');">Calculate My EMI</a>
+                                    <a href="#" data-toggle="modal" data-target="#get-started" class="btn btn-primary btn-lg" style="font-size: 35px;" onClick="">Calculate My EMI</a>
                                 </div>
 
                             </div>
@@ -272,7 +302,7 @@
                                         <div class="bottom">
                                             <div class="testimonial-icon"> <i class="pe-7s-comment"></i></div>
                                             <div class="name-picture">
-                                                <img alt="" src="jazzy/img/person-3.png">
+                                                <img alt="" src="{{ asset('images/person-3.png') }}">
                                                 <h5>Jyotika</h5>
                                                 <p>Corporate Client</p>
                                             </div>
@@ -344,7 +374,7 @@
         {% endblock %}
 
         {% block modal %}
-            {% include 'CocoricoCoreBundle:Frontend/Common:_modal.html.twig' only %}
+            {% include 'CocoricoCoreBundle:Frontend/Common:_modal_emi.html.twig' %}
         {% endblock %}
     {% endembed %}
 {% endblock %}
@@ -378,6 +408,8 @@
     <script type="text/javascript" src="{{ asset('js/vendor/morphext.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
     
+    <script type="text/javascript" src="{{ asset('js/vendor/jquery.dropdown.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/emicalculator.js') }}"></script>
     <script type="text/javascript">
          $(".rotate").Morphext({
             animation: "pulse", // Overrides default "bounceIn"
@@ -464,3 +496,4 @@
     'listings': listings
     } only %}
 {% endblock %}
+

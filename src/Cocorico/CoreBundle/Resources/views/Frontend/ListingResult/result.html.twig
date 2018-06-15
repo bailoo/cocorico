@@ -43,12 +43,15 @@
         {% trans_default_domain 'cocorico_listing' %}
         {% block breadcrumbs %}
             <!-- breadcrumbs -->
+            <div class="container">
             {{ render(controller('CocoricoBreadcrumbBundle:Breadcrumbs:index',{
                 request: app.request
             })) }}
+            </div>
         {% endblock %}
 
         {% block main %}
+            <div class="container">
             {#search form with filters#}
             {% include 'CocoricoCoreBundle:Frontend/Common:_flash.html.twig' %}
 
@@ -200,6 +203,7 @@
 
             {#TO NOT DELETE#}
             <div data-id="seo-desc-moved"></div>
+        </div>
         {% endblock %}
 
         {% block modal %}

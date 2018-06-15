@@ -5,7 +5,7 @@
 // page init
 jQuery(function () {
     initPopups();
-    initCustomForms();
+    //initCustomForms();
     initAddClasses();
     initUiSlider();
     initRowRemove();

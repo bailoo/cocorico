@@ -5172,14 +5172,9 @@ span.btn:focus {
 
 /* header styles */
 #header {
-    margin: 0 0 20px;
-    padding: 0 0 21px;
-    border-bottom: #dfe3e6 solid 1px;
-}
-
-.home-page #header {
     margin: 0;
-    padding-top: 20px;
+    padding: 21px 0 21px;
+    border-bottom: #dfe3e6 solid 1px;
 }
 
 .home-page .form-category {
@@ -5884,7 +5879,7 @@ span.btn:focus {
 
 /* visual */
 .visual {
-    margin: 0 0 50px;
+    margin: 0px;
     background: url(../../images/bg-section.png) no-repeat 50% 0 #58595b;
 }
 
@@ -5920,6 +5915,8 @@ span.btn:focus {
     color: #58595b;
     line-height: 22px;
     padding-bottom: 22px;
+    padding-top: 32px;
+    border-bottom: solid 1px #cdcdcd;
 }
 
 .infoarea .info-box {

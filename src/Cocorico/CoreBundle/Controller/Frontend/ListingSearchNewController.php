@@ -71,7 +71,6 @@ class ListingSearchNewController extends Controller
 
             $addressType = implode(',', $parsedLocation['types']);
             $searchLocation->setAddressType($addressType);
-//            $location = explode('-',$location);
             $location = str_replace('-',' ', $location);
             $searchLocation->setAddress(ucwords(strtolower($location)));
 
@@ -128,25 +127,6 @@ class ListingSearchNewController extends Controller
 //        //Persist listing search request in session
         $this->get('session')->set('listing_search_request', $listingSearchRequest);
 
-        //Create Form to Render//Cocorico\CoreBundle\Entity\ListingCategory Object (
-    // [id:Cocorico\CoreBundle\Entity\ListingCategory:private] =>
-    // [parent:Cocorico\CoreBundle\Entity\ListingCategory:private] =>
-    // [children:Cocorico\CoreBundle\Entity\ListingCategory:private] =>
-    // [listingListingCategories:Cocorico\CoreBundle\Entity\ListingCategory:private] => Doctrine\Common\Collections\ArrayCollection Object (
-    //      [elements:Doctrine\Common\Collections\ArrayCollection:private] => Array ( )
-    // )
-    // [fields:Cocorico\CoreBundle\Entity\ListingCategory:private] => Doctrine\Common\Collections\ArrayCollection Object (
-    //      [elements:Doctrine\Common\Collections\ArrayCollection:private] => Array ( )
-    // )
-    // [lft:protected] =>
-    // [lvl:protected] =>
-    // [rgt:protected] =>
-    // [root:protected] =>
-    // [translations:protected] =>
-    // [newTranslations:protected] =>
-    // [currentLocale:protected] =>
-    // [defaultLocale:protected] => en
-// )
         $form = $this->createSearchResultForm($listingSearchRequest);
 
 

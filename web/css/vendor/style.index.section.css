@@ -1384,7 +1384,7 @@ hr {
   padding: 6px 12px;
   font-size: 16px;
   line-height: 1.55;
-  border-radius: ;
+  border-radius:0 ;
 }
 .btn-primary {
   color: #ffffff;
@@ -1485,13 +1485,13 @@ fieldset[disabled] .btn-transparent.active {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
-  border-radius: ;
+  border-radius: 0;
 }
 .btn-xs {
   padding: 1px 5px;
   font-size: 14px;
   line-height: 1.5;
-  border-radius: ;
+  border-radius: 0;
 }
 /* dropdowns */
 .dropdown-menu > li > a {

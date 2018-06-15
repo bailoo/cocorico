@@ -5172,14 +5172,9 @@ span.btn:focus {
 
 /* header styles */
 #header {
-    margin: 0 0 20px;
-    padding: 0 0 21px;
-    border-bottom: #dfe3e6 solid 1px;
-}
-
-.home-page #header {
     margin: 0;
-    padding-top: 20px;
+    padding: 21px 0 21px;
+    border-bottom: #dfe3e6 solid 1px;
 }
 
 .home-page .form-category {

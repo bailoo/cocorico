@@ -7,13 +7,13 @@
 
     <!-- contain main informative part of the site -->
     <main id="main" role="main">
-        <div class="container">
-            <div class="row">
+       {# <div class="container-fluid">
+            <div class="row">#}
                 {% block breadcrumbs %}{% endblock %}
 
                 {% block main %}{% endblock %}
-            </div>
-        </div>
+          {#  </div>
+        </div>#}
         {#popin#}
         {% block modal %}{% endblock %}
     </main>

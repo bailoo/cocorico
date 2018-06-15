@@ -18,10 +18,22 @@
     <link href="{{ asset('css/vendor/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendor/owl.theme.css') }}" rel="stylesheet">
     
+    <link href="{{ asset('css/vendor/dropdown/modalinput.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor/dropdown/dropdownstyle.css') }}" rel="stylesheet">
+    
+    <script type="text/javascript" src="{{ asset('js/vendor/modernizr.custom.63321.js') }}"></script>
+   
     <style>
         .rotate, .rotate-price {
             color: #9ad0ff;
         }
+        
+        .no-spin::-webkit-inner-spin-button, .no-spin::-webkit-outer-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0 !important;
+            -moz-appearance:textfield !important;
+        }
+
     </style>
 {% endblock %}
 
@@ -344,7 +356,7 @@
         {% endblock %}
 
         {% block modal %}
-            {% include 'CocoricoCoreBundle:Frontend/Common:_modal.html.twig' only %}
+            {% include 'CocoricoCoreBundle:Frontend/Common:_modal_emi.html.twig' %}
         {% endblock %}
     {% endembed %}
 {% endblock %}
@@ -378,6 +390,8 @@
     <script type="text/javascript" src="{{ asset('js/vendor/morphext.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/vendor/owl.carousel.min.js') }}"></script>
     
+    <script type="text/javascript" src="{{ asset('js/vendor/jquery.dropdown.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/emicalculator.js') }}"></script>
     <script type="text/javascript">
          $(".rotate").Morphext({
             animation: "pulse", // Overrides default "bounceIn"

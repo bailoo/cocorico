@@ -1,17 +1,41 @@
 {% trans_default_domain 'cocorico' %}
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-     data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content ">
+<div id="get-started" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-sm" style="min-width: 350px;">
+        <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                <h4 class="modal-title text-center">Calculate Your EMI</h4>
             </div>
-            <div class="modal-body home-content-body">
-                <strong class="title"></strong>
+            <div class="modal-body" style="text-align: center;">
+                    <span class="input input--yoshiko" style="margin-top: 20px; max-width: 300px;">
+                        <input class="input__field input__field--yoshiko no-spin" type="number" id="total-amount" value="100000"  onClick=""/>
+                        <label class="input__label input__label--yoshiko" for="input-10">
+                            <span class="input__label-content input__label-content--yoshiko" data-content="Total Amount">Total Amount</span>
+                        </label>
+                    </span>
+                    <select id="cd-dropdown" name="cd-dropdown" class="cd-select" style="display: inline-block; z-index: 3;" onClick="">
+                        <option value="-1">Choose your Bank</option>
+                        <option value="1" class="" selected>Kotak Mahindra</option>
+                        <option value="2" class="">HDFC Bank</option>
+                        <option value="3" class="">Axis Bank</option>
+                        <option value="4" class="">ICICI Bank</option>
+                        <option value="5" class="">IndusInd Bank</option>
+                        <option value="6" class="">RBL Bank</option>
+                        <option value="7" class="">Standard Chartered</option>
+                        <option value="8" class="">Yes Bank</option>
+                    </select>
+                    <select id="cd-dropdown-period" name="cd-dropdown-period" class="cd-select" style="display: inline-block; z-index: 2;"  onClick="">
+                        <option value="-1" selected>Choose your EMI period</option>
+                        <option value="3" class="">3 Months</option>
+                        <option value="6" class="">6 Months</option>
+                        <option value="9" class="">9 Months</option>
+                        <option value="12" class="" selected>12 Months</option>
+                        <option value="18" class="">18 Months</option>
+                        <option value="24" class="">24 Months</option>
+                    </select>
+                <p class="text-center text-muted" style="margin-top: 30px; font-weight: bold;"><span style="font-weight: bolder; font-size: 50px;">₹ <span id="emi-amount">11,000</span></span>/month</p>
+                <p id="emi-comparison" class="text-center text-muted" style="margin-top: 30px; font-weight: bold;">That's less than a monthly gym membership!</p>
             </div>
-            <div class="modal-footer"></div>
         </div>
     </div>
 </div>

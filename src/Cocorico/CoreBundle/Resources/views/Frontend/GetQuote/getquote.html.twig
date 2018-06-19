@@ -1,0 +1,36 @@
+{# @author Sarthak Patidar <sarthakpatidar15@gmail.com> #}
+{% extends '::base.html.twig' %}
+
+
+{% block layout %}
+    {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
+
+        {% trans_default_domain 'cocorico_listing' %}
+
+        {% block breadcrumbs %}
+        {% endblock %}
+
+        {% block search_form %}
+        {% endblock %}
+
+        {% block main %}
+        {% endblock %}
+
+    {% endembed %}
+{% endblock layout %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#Geocoding #}
+    {% include '@CocoricoCore/Frontend/Listing/js/_geocoding_js.html.twig' with {
+        'map_elt': '#map-listing',
+        'marker_draggable': true
+    } only %}
+
+
+    {#Translations#}
+    {% include '@CocoricoCore/Frontend/Listing/js/_translator_js.html.twig' only %}
+
+
+{% endblock %}

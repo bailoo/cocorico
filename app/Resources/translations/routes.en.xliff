@@ -279,6 +279,10 @@
         <source>/user/{id}/show</source>
         <target>/user/{id}/show</target>
       </trans-unit>
+      <trans-unit id="" resname="cocorico_get_quote">
+        <source>/get-quote</source>
+        <target>/get-quote</target>
+      </trans-unit>
       <trans-unit id="b2d05e08f510a64b25ddcb388d335df29955210b" resname="cocorico_user_register">
         <source>/register</source>
         <target>/register</target>

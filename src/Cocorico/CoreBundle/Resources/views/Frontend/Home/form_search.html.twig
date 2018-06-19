@@ -30,10 +30,10 @@
             const category = document.getElementsByTagName("option");
             var i =0;
             var category_name = '';
-            while(i<14){
+            while(i < category.length){
                 const value = category[i].getAttribute('value');
                 if( value == category_id){
-                    category_name  = category[i].innerHTML;
+                    category_name  = category[i].innerText;
                     break;
                 }
                 i++;

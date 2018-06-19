@@ -17,6 +17,14 @@
             {{ status }}
             <br><br>
             {{ count }}
+            <br><br>
+            <ul>
+            {% for row in data %}
+                    {% for item in row %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+            {% endfor %}
+            </ul>
         {% endblock %}
 
     {% endembed %}

@@ -46,9 +46,9 @@
             category_name = category_name.replace(" ","-");
             category_name = category_name.toLowerCase();
             if (location){
-                window.open("/en/book-"+category_name+"-online/"+location,"_self");
+                window.open("/book-"+category_name+"-online/"+location,"_self");
             } else{
-                window.open("/en/book-"+category_name+"-online","_self");
+                window.open("/book-"+category_name+"-online","_self");
             }
         } else{
             alert("Please select a category to search for.");

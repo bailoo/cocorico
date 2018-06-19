@@ -32,7 +32,7 @@ class ListingSearchNewController extends Controller
     /**
      * Listings search result.
      *
-     * @Route("/artist/{category}/{location}/{date}", name="cocorico_listing_search_new_result")
+     * @Route("//book-{category}-online/{location}/{date}", name="cocorico_listing_search_new_result")
      * @Method("GET")
      *
      * @param  Request $request

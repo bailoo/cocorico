@@ -32,17 +32,22 @@ class ListingSearchNewController extends Controller
     /**
      * Listings search result.
      *
-     * @Route("//book-{category}-online/{location}/{date}", name="cocorico_listing_search_new_result")
+     * @Route("//{category}/{location}/{date}", name="cocorico_listing_search_new_result")
      * @Method("GET")
      *
      * @param  Request $request
-     * @param string $category
+     * @param mixed $category
      * @param string $location
      * @param string $date
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function searchNewAction(Request $request, $category, $location=null, $date = null)
     {
+        $category = explode('-', $category);
+        unset($category[0]);
+        unset($category[count($category)]);
+        $category = implode(' ', $category);
+        var_dump($category);
         $markers = array('listingsIds' => array(), 'markers' => array());
         $listings = new \ArrayIterator();
         $nbListings = 0;
@@ -51,8 +56,13 @@ class ListingSearchNewController extends Controller
         $listingSearchRequest = $this->get('cocorico.listing_search_request');
         $category_id = array();
         $cat = $this->getDoctrine()->getRepository(ListingCategory::class)->findAll();
+        if($category == 'anchor'){$category = 'Anchor/Emcee';}
+        else if($category == 'band'){$category = 'Live Band';}
+        else if($category == 'celebrity'){$category = 'Celebrity Appearance';}
+        else if($category == 'photographer'){$category = 'Photographer/Videographer';}
         foreach ($cat as $item){
-            if($item->translate()->getName() == ucfirst($category)){
+            var_dump($item->translate()->getName());
+            if($item->translate()->getName() == ucwords($category)){
                 array_push($category_id,$item->getId());
                 break;
             }

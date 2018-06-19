@@ -88,17 +88,30 @@
             const category = document.getElementsByTagName("option");
             var i =0;
             var category_name = '';
-            while(i<14){
+            while(i < category.length){
                 const value = category[i].getAttribute('value');
-                if( value == category_id){
-                    category_name  = category[i].innerHTML;
+                if( value === category_id){
+                    category_name  = category[i].innerHTML.trim();
                     break;
                 }
                 i++;
             }
+
+            const index = category_name.lastIndexOf("/");
+            if(index !== -1){
+                category_name = category_name.slice(0,index);
+            } else{
+                const ind = category_name.lastIndexOf(" ");
+                if (ind !== -1){
+                    category_name = category_name.slice(0,ind);
+                }
+            }
             category_name = category_name.replace("/","-").trim();
             category_name = category_name.replace(" ","-");
             category_name = category_name.toLowerCase();
+            if (category_name === 'live'){category_name = 'band'}
+            else if (category_name === 'variety'){category_name = 'variety-artist'}
+            else if (category_name === 'makeup'){category_name = 'makeup-artist'}
             if (location){
                 const date = document.getElementById("date_range_start").value.replace(/\//g,"-");
                 if(date){

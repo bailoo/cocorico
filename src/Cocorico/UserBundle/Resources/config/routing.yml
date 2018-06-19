@@ -1,11 +1,13 @@
 cocorico_user_frontend:
     resource: "@CocoricoUserBundle/Controller/"
     type:     annotation
+    options: { i18n: false }
 
 cocorico_user_dashboard:
     resource: "@CocoricoUserBundle/Controller/Dashboard"
     type:     annotation
     prefix: /dashboard
+    options: { i18n: false }
 
 sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
@@ -20,14 +22,18 @@ sonata_user_profile:
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
     prefix:   /login
+    options: { i18n: false }
 
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /login
+    options: { i18n: false }
 
 hwi_oauth_connect:
     resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
     prefix:   /login
+    options: { i18n: false }
 
 hwi_facebook_login:
     pattern: /oauth/fb-login
+    options: { i18n: false }

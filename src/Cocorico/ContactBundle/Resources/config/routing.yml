@@ -1,3 +1,5 @@
 cocorico_contact_homepage:
     resource: "@CocoricoContactBundle/Controller/Frontend/ContactController.php"
     type:     annotation
+    options: { i18n: false }
+

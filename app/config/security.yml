@@ -31,7 +31,7 @@ security:
 
         main:
             context: frontend
-            pattern: ^/(%cocorico.locales_string%)
+            pattern: ^/
             #if some changes are done make same change in Cocorico/CoreBundle/Resources/config/Services/listeners.yml
             form_login:
                 provider: fos_userbundle

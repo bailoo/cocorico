@@ -25,12 +25,15 @@ JMSTranslationBundle_ui:
     type: annotation
     #prefix: /_translations
     prefix:   /%cocorico.admin%/__translations
+    options: { i18n: false }
 
 #upload bundle routing
 oneup_uploader:
     resource: .
     type: uploader
+    options: { i18n: false }
 
 #imagine bundle routing
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    options: { i18n: false }

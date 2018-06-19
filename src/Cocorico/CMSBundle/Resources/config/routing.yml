@@ -1,3 +1,4 @@
 cocorico_cms_frontend:
     resource: "@CocoricoCMSBundle/Controller/Frontend"
     type:     annotation
+    options: { i18n: false }

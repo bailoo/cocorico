@@ -2,3 +2,5 @@ cocorico_dashboard_review:
     resource: "@CocoricoReviewBundle/Controller/Dashboard"
     type:     annotation
     prefix: /dashboard
+    options: { i18n: false }
+

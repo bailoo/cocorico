@@ -1,6 +1,8 @@
 cocorico_page:
     resource: "@CocoricoPageBundle/Controller/Frontend"
     type:     annotation
+    options: { i18n: false }
 
 elfinder:
     resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    options: { i18n: false }

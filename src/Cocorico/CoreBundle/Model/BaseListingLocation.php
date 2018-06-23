@@ -30,7 +30,7 @@ abstract class BaseListingLocation
      *
      * @var string
      */
-    protected $country;
+    protected $country = 'IN';
 
     /**
      * @ORM\Column(name="city", type="string", length=75, nullable=false)

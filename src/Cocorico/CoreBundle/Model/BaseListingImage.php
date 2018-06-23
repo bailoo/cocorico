@@ -38,11 +38,18 @@ abstract class BaseListingImage
     /**
      * @var int
      *
-     * @Assert\NotBlank(message="assert.not_blank")
-     *
-     * @ORM\Column(name="position", type="smallint", nullable=false)
+     * @ORM\Column(name="position", type="smallint", nullable=true)
      */
     protected $position;
+
+    /**
+     * @Assert\NotBlank(message="assert.not_blank")
+     *
+     * @ORM\Column(type="string", length=255, name="type", nullable=false)
+     *
+     * @var string $name
+     */
+    protected $type = 'image';
 
     /**
      * Sets name.
@@ -95,4 +102,19 @@ abstract class BaseListingImage
         return null === $this->name ? null : self::IMAGE_FOLDER . $this->name;
     }
 
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 }

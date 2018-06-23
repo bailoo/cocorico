@@ -30,4 +30,27 @@ class ListingCategoryTranslation extends BaseListingCategoryTranslation
     use ORMBehaviors\Translatable\Translation;
     use ORMBehaviors\Sluggable\Sluggable;
 
+    /**
+     * @ORM\Column(name="translatable_id", type="integer", nullable=true)
+     *
+     */
+    protected $categoryId;
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param mixed $categoryId
+     */
+    public function setCategoryId($categoryId): void
+    {
+        $this->categoryId = $categoryId;
+    }
+
+
 }

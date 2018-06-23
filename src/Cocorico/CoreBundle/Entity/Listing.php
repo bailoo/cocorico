@@ -121,6 +121,109 @@ class Listing extends BaseListing
      */
     private $old_id;
 
+    /**
+     * @ORM\Column(name="price", type="decimal", precision=8, scale=0, nullable=false)
+     * @Assert\NotBlank(message="assert.not_blank")
+     *
+     * @var integer
+     */
+    protected $price;
+
+    /**
+     *
+     * @ORM\Column(name="gender", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $gender;
+
+    /**
+     *
+     * @ORM\Column(name="vocal_gender", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $vocalGender;
+
+    /**
+     *
+     * @ORM\Column(name="languages", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $languages;
+
+    /**
+     *
+     * @ORM\Column(name="offstageteam", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $offStageTeam;
+
+    /**
+     *
+     * @ORM\Column(name="performing_members", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $performingMembers = 1;
+
+    /**
+     *
+     * @ORM\Column(name="travel", type="string", nullable=true)
+     *
+     * @var string
+     */
+    protected $travel;
+
+    /**
+     *
+     * @ORM\Column(name="average_rating", type="smallint", nullable=true)
+     *
+     * @var integer
+     */
+    protected $averageRating =0;
+
+    /**
+     *
+     * @ORM\Column(name="comment_count", type="integer", nullable=true)
+     *
+     * @var integer
+     */
+    protected $commentCount = 0;
+
+    /**
+     *
+     * @ORM\Column(name="rate_count", type="integer", nullable=true)
+     *
+     * @var integer
+     */
+    protected $rateCount = 0;
+
+    /**
+     *
+     * @ORM\Column(name="likes", type="integer", nullable=true)
+     *
+     * @var integer
+     */
+    protected $likes = 0;
+
+    /**
+     *
+     * @ORM\Column(name="facebook_id", type="text", nullable=true)
+     *
+     * @var mixed
+     */
+    protected $fbId;
+
+    /**
+     *
+     * @ORM\Column(name="tags", type="text", nullable=true)
+     *
+     * @var mixed
+     */
+    protected $tags;
 
     public function __construct()
     {
@@ -132,7 +235,6 @@ class Listing extends BaseListing
         $this->threads = new ArrayCollection();
         $this->options = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -544,6 +646,11 @@ class Listing extends BaseListing
         $this->options = $options;
     }
 
+    /**
+     * Set Old Id
+     *
+     * @param  integer $id
+     */
     public function setOldId($id){
         $this->old_id = $id;
     }
@@ -557,6 +664,247 @@ class Listing extends BaseListing
         return $this->old_id;
     }
 
+    /**
+     * Set price
+     *
+     * @param  integer $price
+     * @return Listing
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPriceDecimal()
+    {
+        return $this->price / 100;
+    }
+
+    /**
+     * Set averageRating
+     *
+     * @param  integer $averageRating
+     * @return Listing
+     */
+    public function setAverageRating($averageRating)
+    {
+        $this->averageRating = $averageRating;
+
+        return $this;
+    }
+
+    /**
+     * Get averageRating
+     *1
+     *
+     * @return integer
+     */
+    public function getAverageRating()
+    {
+        return $this->averageRating;
+    }
+
+    /**
+     * Set commentCount
+     *
+     * @param  integer $commentCount
+     * @return Listing
+     */
+    public function setCommentCount($commentCount)
+    {
+        $this->commentCount = $commentCount;
+
+        return $this;
+    }
+
+    /**
+     * Get commentCount
+     *1
+     *
+     * @return integer
+     */
+    public function getCommentCount()
+    {
+        return $this->commentCount;
+    }
+
+    /**
+     * Set Gender
+     *
+     * @param  string $gender
+     */
+    public function setGender($gender){
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRateCount()
+    {
+        return $this->rateCount;
+    }
+
+    /**
+     * @param int $rateCount
+     */
+    public function setRateCount($rateCount)
+    {
+        $this->rateCount = $rateCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @param int $likes
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param string $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOffStageTeam()
+    {
+        return $this->offStageTeam;
+    }
+
+    /**
+     * @param string $offStageTeam
+     */
+    public function setOffStageTeam($offStageTeam)
+    {
+        $this->offStageTeam = $offStageTeam;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTravel()
+    {
+        return $this->travel;
+    }
+
+    /**
+     * @param string $travel
+     */
+    public function setTravel($travel)
+    {
+        $this->travel = $travel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFbId()
+    {
+        return $this->fbId;
+    }
+
+    /**
+     * @param mixed $fbId
+     */
+    public function setFbId($fbId): void
+    {
+        $this->fbId = $fbId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags): void
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPerformingMembers(): string
+    {
+        return $this->performingMembers;
+    }
+
+    /**
+     * @param string $performingMembers
+     */
+    public function setPerformingMembers(string $performingMembers): void
+    {
+        $this->performingMembers = $performingMembers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVocalGender(): string
+    {
+        return $this->vocalGender;
+    }
+
+    /**
+     * @param string $vocalGender
+     */
+    public function setVocalGender(string $vocalGender): void
+    {
+        $this->vocalGender = $vocalGender;
+    }
 
     /**
      * @param int  $minImages

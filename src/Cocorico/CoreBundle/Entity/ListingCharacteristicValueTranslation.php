@@ -37,6 +37,28 @@ class ListingCharacteristicValueTranslation
     protected $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Cocorico\CoreBundle\Entity\ListingCharacteristicValue")
+     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     */
+    protected $translatableId;
+
+    /**
+     * @return integer
+     */
+    public function getTranslatableId()
+    {
+        return $this->translatableId;
+    }
+
+    /**
+     * @param integer $translatableId
+     */
+    public function setTranslatableId($translatableId)
+    {
+        $this->translatableId = $translatableId;
+    }
+
+    /**
      * Get id
      *
      * @return integer

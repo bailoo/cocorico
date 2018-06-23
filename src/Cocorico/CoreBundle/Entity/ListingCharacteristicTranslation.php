@@ -26,6 +26,11 @@ class ListingCharacteristicTranslation extends BaseListingCharacteristicTranslat
 {
     use ORMBehaviors\Translatable\Translation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Cocorico\CoreBundle\Entity\ListingCharacteristic")
+     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     */
+    protected $translatableId;
 
     /**
      * Get id
@@ -36,4 +41,21 @@ class ListingCharacteristicTranslation extends BaseListingCharacteristicTranslat
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTranslatableId()
+    {
+        return $this->translatableId;
+    }
+
+    /**
+     * @param mixed $translatableId
+     */
+    public function setTranslatableId($translatableId): void
+    {
+        $this->translatableId = $translatableId;
+    }
+
 }

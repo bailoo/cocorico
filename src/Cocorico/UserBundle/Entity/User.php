@@ -89,19 +89,8 @@ class User extends BaseUser implements ParticipantInterface
     protected $email;
 
     /**
-     * @ORM\Column(name="last_name", type="string", length=100)
+     * @ORM\Column(name="last_name", type="string", nullable=true)
      *
-     * @Assert\NotBlank(message="cocorico_user.last_name.blank", groups={
-     *  "CocoricoRegistration", "CocoricoProfile", "CocoricoProfileBankAccount"
-     * })
-     *
-     * @Assert\Length(
-     *     min=3,
-     *     max="100",
-     *     minMessage="cocorico_user.last_name.short",
-     *     maxMessage="cocorico_user.last_name.long",
-     *     groups={"CocoricoRegistration", "CocoricoProfile", "CocoricoProfileBankAccount"}
-     * )
      */
     protected $lastName;
 
@@ -127,7 +116,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="phone_prefix", type="string", length=6, nullable=true)
      */
-    protected $phonePrefix = '+91';
+    protected $phonePrefix = '+33';
 
     /**
      * @var string
@@ -136,31 +125,22 @@ class User extends BaseUser implements ParticipantInterface
      */
     protected $phone;
 
+
     /**
      * @var \DateTime $birthday
      *
-     * @ORM\Column(name="birthday", type="date")
-     *
-     * @Assert\NotBlank(message="cocorico_user.birthday.blank", groups={
-     *  "CocoricoRegistration", "CocoricoProfileBankAccount"
-     * })
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      *
      */
     protected $birthday;
+
 
     /**
      * @var string
      *
      * @ORM\Column(name="nationality", type="string", length=3, nullable=true)
      */
-    protected $nationality = "IN";
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="gender", type="string", length=8, nullable=true)
-     */
-    protected $gender;
+    protected $nationality = "FR";
 
     /**
      * @var string
@@ -171,7 +151,7 @@ class User extends BaseUser implements ParticipantInterface
      *  "CocoricoRegistration", "CocoricoProfileBankAccount"
      * })
      */
-    protected $countryOfResidence = "IN";
+    protected $countryOfResidence = "FR";
 
     /**
      * @var string
@@ -704,22 +684,6 @@ class User extends BaseUser implements ParticipantInterface
     public function setNationality($nationality)
     {
         $this->nationality = $nationality;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGender()
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param string $gender
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
     }
 
     /**

@@ -6,18 +6,12 @@
  * Time: 6:13 PM
  */
 
-
-/**
- * Created by PhpStorm.
- * User: sarthak
- * Date: 28/5/18
- * Time: 5:07 PM
- */
-
 namespace Cocorico\CoreBundle\Form\Handler\Frontend;
 
 use Cocorico\CoreBundle\Entity\Listing;
+use Cocorico\CoreBundle\Entity\ListingBodySpecifications;
 use Cocorico\CoreBundle\Entity\ListingLocation;
+use Cocorico\CoreBundle\Entity\ListingPrice;
 use Cocorico\CoreBundle\Model\Manager\ListingImportManager;
 use Cocorico\UserBundle\Entity\User;
 use Cocorico\UserBundle\Form\Handler\RegistrationFormHandler;
@@ -36,7 +30,6 @@ class ListingImportHandler
 
     /**
      * @param RequestStack $requestStack
-     * @param EntityManager $em
      * @param ListingImportManager $listingImportManager
      * @param RegistrationFormHandler $registrationHandler
      */
@@ -63,15 +56,18 @@ class ListingImportHandler
      * @param Listing $listing
      * @param User $user
      * @param ListingLocation $listingLocation
+     * @param ListingBodySpecifications $listingBody
+     * @param ListingPrice $listingPrice
+     * @param array $listingMedia
      * @param array $eventTypes
      * @param array $subcategory
      * @param bool $userSet
      *
-     * @return Booking|string
+     * @return string
      */
-    public function processImport(Listing $listing, User $user, ListingLocation $listingLocation, $eventTypes, $subcategory, $userSet)
+    public function processImport(Listing $listing, User $user, ListingLocation $listingLocation, ListingBodySpecifications $listingBody, ListingPrice $listingPrice, $listingMedia, $eventTypes, $subcategory, $userSet)
     {
-        return $this->importListing($listing, $user, $listingLocation, $eventTypes, $subcategory, $userSet);
+        return $this->importListing($listing, $user,$listingLocation, $listingBody, $listingPrice, $listingMedia, $eventTypes, $subcategory, $userSet);
     }
 
     /**
@@ -80,14 +76,17 @@ class ListingImportHandler
      * @param Listing $listing
      * @param User $user
      * @param ListingLocation $listingLocation
-     * @param array $eventTypes
-     * @param array $subcategory
+     * @param ListingBodySpecifications $listingBody
+     * @param ListingPrice $listingPrice
+     * @param array $listingMedia
+     * @param array $listingEvents
+     * @param array $listingSubCategories
      * @param bool $userSet
      *
      * @return string|boolean
      *
      */
-    private function importListing(Listing $listing, User $user, ListingLocation $listingLocation, $eventTypes, $subcategory, $userSet)
+    private function importListing(Listing $listing, User $user, ListingLocation $listingLocation, ListingBodySpecifications $listingBody, ListingPrice $listingPrice, $listingMedia, $listingEvents, $listingSubCategories, $userSet)
     {
         if(!$userSet){
             $this->registrationHandler->handleRegistration($user);
@@ -96,10 +95,12 @@ class ListingImportHandler
             $listing->setUser($user);
             $listing->setLocation($listingLocation);
             $this->listingImportManager->save($listing);
-            $id = $listing->getId();
-            if($id != NULL){
-                $this->listingImportManager->saveListingEventType($eventTypes,$listing);
-                $this->listingImportManager->saveListingSubCategory($subcategory,$listing);
+            if($listing->getId() != NULL){
+                $this->listingImportManager->saveListingMedia($listingMedia,$listing);
+                $this->listingImportManager->saveListingPrice($listingPrice,$listing);
+                $this->listingImportManager->saveListingBodySpecifications($listingBody,$listing);
+                $this->listingImportManager->saveListingEvents($listingEvents,$listing);
+                $this->listingImportManager->saveListingSubCategory($listingSubCategories,$listing);
                 return true;
             }
         }

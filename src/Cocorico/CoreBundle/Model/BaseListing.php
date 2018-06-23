@@ -92,14 +92,6 @@ abstract class BaseListing
     protected $type;
 
     /**
-     * @ORM\Column(name="price", type="decimal", precision=8, scale=0, nullable=false)
-     * @Assert\NotBlank(message="assert.not_blank")
-     *
-     * @var integer
-     */
-    protected $price;
-
-    /**
      *
      * @ORM\Column(name="certified", type="boolean", nullable=true)
      *
@@ -131,21 +123,6 @@ abstract class BaseListing
      * @var integer
      */
     protected $cancellationPolicy = self::CANCELLATION_POLICY_FLEXIBLE;
-
-
-    /**
-     * @ORM\Column(name="average_rating", type="smallint", nullable=true)
-     *
-     * @var integer
-     */
-    protected $averageRating;
-
-    /**
-     * @ORM\Column(name="comment_count", type="integer", nullable=true)
-     *
-     * @var integer
-     */
-    protected $commentCount = 0;
 
     /**
      * Admin notation
@@ -245,40 +222,6 @@ abstract class BaseListing
         );
 
         return $status;
-    }
-
-
-    /**
-     * Set price
-     *
-     * @param  integer $price
-     * @return Listing
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPriceDecimal()
-    {
-        return $this->price / 100;
     }
 
     /**
@@ -486,54 +429,6 @@ abstract class BaseListing
     }
 
     /**
-     * Set averageRating
-     *
-     * @param  integer $averageRating
-     * @return Listing
-     */
-    public function setAverageRating($averageRating)
-    {
-        $this->averageRating = $averageRating;
-
-        return $this;
-    }
-
-    /**
-     * Get averageRating
-     *1
-     *
-     * @return integer
-     */
-    public function getAverageRating()
-    {
-        return $this->averageRating;
-    }
-
-    /**
-     * Set commentCount
-     *
-     * @param  integer $commentCount
-     * @return Listing
-     */
-    public function setCommentCount($commentCount)
-    {
-        $this->commentCount = $commentCount;
-
-        return $this;
-    }
-
-    /**
-     * Get commentCount
-     *1
-     *
-     * @return integer
-     */
-    public function getCommentCount()
-    {
-        return $this->commentCount;
-    }
-
-    /**
      * @return float
      */
     public function getAdminNotation()
@@ -548,7 +443,6 @@ abstract class BaseListing
     {
         $this->adminNotation = $adminNotation;
     }
-
 
     /**
      * @return \DateTime
@@ -565,6 +459,4 @@ abstract class BaseListing
     {
         $this->availabilitiesUpdatedAt = $availabilitiesUpdatedAt;
     }
-
-
 }

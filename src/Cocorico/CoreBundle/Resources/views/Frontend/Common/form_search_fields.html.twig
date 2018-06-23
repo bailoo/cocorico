@@ -110,6 +110,7 @@
             category_name = category_name.replace(" ","-");
             category_name = category_name.toLowerCase();
             if (category_name === 'live'){category_name = 'band'}
+            else if (category_name === 'photo'){category_name = 'photographer'}
             else if (category_name === 'variety'){category_name = 'variety-artist'}
             else if (category_name === 'makeup'){category_name = 'makeup-artist'}
             if (location){

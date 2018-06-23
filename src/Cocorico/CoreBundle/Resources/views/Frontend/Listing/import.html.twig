@@ -18,13 +18,13 @@
             <br><br>
             {{ count }}
             <br><br>
-            <ul>
+            <ol>
             {% for row in data %}
                     {% for item in row %}
                         <li>{{ item }}</li>
                     {% endfor %}
             {% endfor %}
-            </ul>
+            </ol>
         {% endblock %}
 
     {% endembed %}

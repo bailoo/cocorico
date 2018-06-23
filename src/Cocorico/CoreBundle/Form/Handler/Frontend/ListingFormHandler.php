@@ -96,7 +96,6 @@ class ListingFormHandler
         return true;
     }
 
-
     /**
      * @param  Listing $listing
      * @return Listing

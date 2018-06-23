@@ -9,12 +9,13 @@
 namespace Cocorico\CoreBundle\Model\Manager;
 
 use Cocorico\CoreBundle\Entity\Listing;
+use Cocorico\CoreBundle\Entity\ListingBodySpecifications;
 use Cocorico\CoreBundle\Entity\ListingCategory;
-use Cocorico\CoreBundle\Entity\ListingEventType;
+use Cocorico\CoreBundle\Entity\ListingCharacteristicValueTranslation;
 use Cocorico\CoreBundle\Entity\ListingImage;
 use Cocorico\CoreBundle\Entity\ListingListingCategory;
 use Cocorico\CoreBundle\Entity\ListingListingCharacteristic;
-use Cocorico\CoreBundle\Entity\ListingListingSubCategory;
+use Cocorico\CoreBundle\Entity\ListingPrice;
 use Cocorico\CoreBundle\Entity\ListingTranslation;
 use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
 use Cocorico\CoreBundle\Model\ListingCategoryFieldValueInterface;
@@ -28,8 +29,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Cocorico\CoreBundle\Entity\ListingListingEventType;
-use Cocorico\CoreBundle\Entity\ListingSubCategory;
 
 class ListingImportManager extends BaseManager
 {
@@ -227,64 +226,113 @@ class ListingImportManager extends BaseManager
         return $listing;
     }
 
-
     /**
      * @author Sarthak Patidar
      *
-     * Save Event types of artists
+     * Save Listing Price
      *
-     * @param array $eventTypes
+     * @param ListingPrice $listingPrice
      * @param Listing $listing
      *
      * @return boolean
      */
-    public function saveListingEventType($eventTypes,$listing){
-        foreach ($eventTypes as $event){
-            $eventType = $this->em->getRepository('CocoricoCoreBundle:ListingEventType')->findOneBy(array('name' => $event));
-            $listingListingEventType = new ListingListingEventType();
-            $listingListingEventType->setListingId($listing);
-            if(!$eventType){
-                $newEventType = new ListingEventType();
-                $newEventType->setName($event);
-                $this->em->persist($newEventType);
-                $this->em->flush();
-                $listingListingEventType->setEventId($newEventType);
-            }else{
-                $listingListingEventType->setEventId($eventType);
-            }
-            $this->em->persist($listingListingEventType);
-            $this->em->flush();
-        }
+    public function saveListingPrice(ListingPrice $listingPrice,$listing){
+        $listingPrice->setListingId($listing);
+        $this->em->persist($listingPrice);
+        $this->em->flush();
         return true;
     }
 
     /**
      * @author Sarthak Patidar
      *
-     * Save Event types of artists
+     * Save Listing Media (images, audios and videos)
      *
-     * @param array $subcategory
+     * @param array $listingMedia
      * @param Listing $listing
      *
      * @return boolean
      */
-    public function saveListingSubCategory($subcategory,$listing){
-        foreach ($subcategory as $name){
-            $subCategory = $this->em->getRepository('CocoricoCoreBundle:ListingSubCategory')->findOneBy(array('name' => $name));
-            $category = new ListingListingSubCategory();
-            $category->setListingId($listing);
-            if(!$subCategory){
-                $newSubCategory = new ListingSubCategory();
-                $newSubCategory->setName($name);
-                $this->em->persist($newSubCategory);
-                $this->em->flush();
-                $category->setSubcategoryId($newSubCategory);
-            }else{
-                $category->setSubcategoryId($subCategory);
+    public function saveListingMedia($listingMedia,$listing){
+            $dp = $listingMedia['dp'];
+            $dp->setListing($listing);
+            $this->em->persist($dp);
+            $cover = $listingMedia['cover'];
+            $cover->setListing($listing);
+            $this->em->persist($cover);
+            unset($listingMedia['cover']);
+            unset($listingMedia['dp']);
+            foreach ($listingMedia as $listingMediaType){
+                foreach ($listingMediaType as $item){
+                $item->setListing($listing);
+                $this->em->persist($item);
+                }
             }
-            $this->em->persist($category);
             $this->em->flush();
+            return true;
+    }
+
+    /**
+     * @param ListingBodySpecifications $listingBody
+     * @param Listing $listing
+     *
+     * @return boolean
+     */
+    public function saveListingBodySpecifications(ListingBodySpecifications $listingBody, Listing $listing)
+    {
+        $listingBody->setListingId($listing);
+        $this->em->persist($listingBody);
+        $this->em->flush();
+        return true;
+    }
+
+    /**
+     * @author Sarthak Patidar
+     *
+     * Save Listing Event Type Characteristic
+     *
+     * @param array $listingEvents
+     * @param Listing $listing
+     *
+     * @return boolean
+     */
+    public function saveListingEvents($listingEvents, Listing $listing){
+        foreach ($listingEvents as $eventCharacteristic){
+            $eventCharacteristic->setListing($listing);
+            $this->em->persist($eventCharacteristic);
         }
+
+        $this->em->flush();
+        return true;
+    }
+
+    /**
+     * @author Sarthak Patidar
+     *
+     * Save Listing Sub Categories Characterstic
+     *
+     * @param array $listingSubCategories
+     * @param Listing $listing
+     *
+     * @return boolean
+     */
+    public function saveListingSubCategory($listingSubCategories, Listing $listing){
+        foreach ($listingSubCategories as $instance){
+                if(!$instance['exists']){
+                    $this->em->persist($instance['value']);
+                    $this->em->flush();
+                    $this->em->refresh($instance['value']);
+                    $translation = $instance['value']->translate();
+                    $translation->setName($instance['translation']);
+                    $translation->setLocale('en');
+                    $this->em->persist($translation);
+                    $this->em->flush();
+                    $instance['subCategory']->setListingCharacteristicValue($instance['value']);
+                }
+                $instance['subCategory']->setListing($listing);
+                $this->em->persist($instance['subCategory']);
+            }
+        $this->em->flush();
         return true;
     }
 }

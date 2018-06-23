@@ -42,10 +42,8 @@ class ListingLocation extends BaseListingLocation
     private $listing;
 
     /**
-     * @Assert\NotBlank(message="assert.not_blank")
-     *
      * @ORM\ManyToOne(targetEntity="Cocorico\GeoBundle\Entity\Coordinate", inversedBy="listingLocations", cascade={"persist"})
-     * @ORM\JoinColumn(name="coordinate_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="coordinate_id", referencedColumnName="id", nullable=true)
      *
      * @var Coordinate
      */

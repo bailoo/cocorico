@@ -223,10 +223,6 @@
             <source>/listing/import</source>
             <target>/listing/import</target>
         </trans-unit>
-        <trans-unit id="" resname="cocorico_listing_search_new_result">
-            <source>/book-{category}-online/{location}/{date}</source>
-            <target>/book-{category}-online/{location}/{date}</target>
-        </trans-unit>
       <trans-unit id="57788c2fa8f84367312cce7e03b4c257e1d11b42" resname="cocorico_listing_show">
         <source>/listing/{slug}/show</source>
         <target>/listing/{slug}/show</target>
@@ -326,7 +322,7 @@
       <trans-unit id="d648a14db6deb14d7ffaf560b9fadeaef85ce92f" resname="hwi_facebook_login">
         <source>/oauth/fb-login</source>
         <target>/oauth/fb-login</target>
-      </trans-unit>
+      </trans-unit>/register
       <trans-unit id="855c7d8229e4fe685d8ebdadd1e5a47e87c276fe" resname="hwi_oauth_connect">
         <source>/oauth/connect/</source>
         <target>/oauth/connect/</target>
@@ -351,6 +347,14 @@
         <source>/media/cache/resolve/{filter}/rc/{hash}/{path}</source>
         <target>/media/cache/resolve/{filter}/rc/{hash}/{path}</target>
       </trans-unit>
+        <trans-unit id="" resname="cocorico_listing_search_new_result">
+            <source>/book-makeup-artist-online/{location}/{date}</source>
+            <target>/book-makeup-artist-online/{location}/{date}</target>
+       </trans-unit>
+        <trans-unit id="" resname="cocorico_listing_search_new_result">
+            <source>/book-{category}-online/{location}/{date}</source>
+            <target>/book-{category}-online/{location}/{date}</target>
+       </trans-unit>
       <trans-unit id="" resname="remove_trailing_slash">
         <source>/{url}</source>
         <target>/{url}</target>

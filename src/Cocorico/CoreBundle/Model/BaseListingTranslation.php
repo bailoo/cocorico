@@ -48,6 +48,16 @@ abstract class BaseListingTranslation
     protected $description;
 
     /**
+     * @Assert\NotBlank(message="assert.not_blank")
+     * @Assert\NotNull(message="assert.not_blank")
+     *
+     * @ORM\Column(name="usp", type="text", length=65535, nullable=false)
+     *
+     * @var string
+     */
+    protected $usp;
+
+    /**
      * @ORM\Column(name="rules", type="text", length=65535, nullable=true)
      *
      * @var string
@@ -71,7 +81,7 @@ abstract class BaseListingTranslation
 
     public function getSluggableFields()
     {
-        return ['title', 'translatableId'];
+        return ['title'];
     }
 
     /**
@@ -118,6 +128,29 @@ abstract class BaseListingTranslation
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set usp
+     *
+     * @param  string $usp
+     * @return $this
+     */
+    public function setUsp($usp)
+    {
+        $this->usp = $usp;
+
+        return $this;
+    }
+
+    /**
+     * Get usp
+     *
+     * @return string
+     */
+    public function getUsp()
+    {
+        return $this->usp;
     }
 
     /**

@@ -15,6 +15,13 @@ services:
             - "@cocorico.listing.import.manager"
             - "@cocorico_user.form.handler.registration"
 
+    #ListingGeocoding
+    cocorico.geocode.handler.listing:
+        class: Cocorico\CoreBundle\Form\Handler\Frontend\ListingGeocodeHandler
+        arguments:
+            - "@request_stack"
+            - "@cocorico.listing.geocode.manager"
+
     #Booking
     cocorico.form.handler.booking:
         class: Cocorico\CoreBundle\Form\Handler\Frontend\BookingFormHandler

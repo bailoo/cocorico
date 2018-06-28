@@ -93,12 +93,12 @@
             <!-- two-columns -->
             <div class="twocolumns row">
                 <!-- maparea -->
-                <div class="maparea col-xs-12 col-sm-4">
-                    <div class="map-holder">
-                        <div id="map-canvas"></div>
-                        {% include '@CocoricoCore/Frontend/ListingResult/_marker.html.twig' only %}
-                    </div>
-                </div>
+                {#<div class="maparea col-xs-12 col-sm-4">#}
+                    {#<div class="map-holder">#}
+                        {#<div id="map-canvas"></div>#}
+                        {#{% include '@CocoricoCore/Frontend/ListingResult/_marker.html.twig' only %}#}
+                    {#</div>#}
+                {#</div>#}
 
                 <!-- postarea -->
                 <section class="listing-area col-xs-12 col-sm-8">
@@ -124,8 +124,9 @@
 
                                         <div class="post-info">
                                             <div class="img-holder">
-                                                <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~  listing_image) | imagine_filter('listing_large') }}"
-                                                     alt="{{ listing_translation.title ~ " " ~ price }}"/>
+                                                <img src="{{ (listing_image) }}" alt="{{ listing_translation.title ~ " " ~ price }}"/>
+                                                {#<img src="{{ (ListingImageConstants.IMAGE_FOLDER ~  listing_image) | imagine_filter('listing_large') }}"#}
+                                                     {#alt="{{ listing_translation.title ~ " " ~ price }}"/>#}
                                             </div>
 
                                             <div class="box">
@@ -194,9 +195,9 @@
                         {%- endfor -%}
                     </div>
 
-                    {% include '@CocoricoCore/Frontend/Common/_pagination.html.twig' with {
-                    'pagination': pagination
-                    } only %}
+                    {#{% include '@CocoricoCore/Frontend/Common/_pagination.html.twig' with {#}
+                    {#'pagination': pagination#}
+                    {#} only %}#}
 
                 </section>
             </div>

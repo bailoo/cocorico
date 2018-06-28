@@ -30,6 +30,11 @@ services:
             - "%cocorico.dashboard_max_per_page%"
             - "@cocorico.mailer.twig_swift"
 
+    cocorico.listing.geocode.manager:
+        class: Cocorico\CoreBundle\Model\Manager\ListingGeocodeManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
     #todo: Split it in muliple services
     cocorico.booking.manager:
         class: Cocorico\CoreBundle\Model\Manager\BookingManager

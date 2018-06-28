@@ -38,7 +38,7 @@ class ListingCharacteristicValueTranslation
 
     /**
      * @ORM\ManyToOne(targetEntity="Cocorico\CoreBundle\Entity\ListingCharacteristicValue")
-     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(name="translatable_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     protected $translatableId;
 

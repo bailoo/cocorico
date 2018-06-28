@@ -15,6 +15,33 @@
 <script>
     document.getElementById("categories").removeAttribute("multiple");
 
+    function setCookie(){
+        var address = document.getElementById('location').value;
+        var lat = document.getElementById('location_lat').value;
+        var lng = document.getElementById('location_lng').value;
+        var viewport = document.getElementById('location_viewport').value;
+        var country = document.getElementById('location_country').value;
+        var area = document.getElementById('location_area').value;
+        var department = document.getElementById('location_department').value;
+        var city  = document.getElementById('location_city').value;
+        var zip = document.getElementById('location_zip').value;
+        var route = document.getElementById('location_route').value;
+        var streetNumber = document.getElementById('location_streetNumber').value;
+        var addressType = document.getElementById('location_addressType').value;
+        document.cookie = "address="+address;
+        document.cookie = "lat="+lat;
+        document.cookie = "lng="+lng;
+        document.cookie = "viewport="+viewport;
+        document.cookie = "country="+country;
+        document.cookie = "area="+area;
+        document.cookie = "department="+department;
+        document.cookie = "city="+city;
+        document.cookie = "zip="+zip;
+        document.cookie = "route="+route;
+        document.cookie = "streetNumber="+streetNumber;
+        document.cookie = "addressType="+addressType;
+    }
+
     document.getElementById("search").onclick = function(e){
         e.preventDefault();
         var location = document.getElementById("location").value;
@@ -54,10 +81,12 @@
             if (category_name === 'live'){category_name = 'band'}
             else if (category_name === 'photo'){category_name = 'photographer'}
             else if (category_name === 'variety'){category_name = 'variety-artist'}
-            else if (category_name === 'makeup'){category_name = 'makeup-artist'}
+            else if (category_name === 'make-up-artist'){category_name = 'makeup-artist'}
             if (location){
+                setCookie();
                 window.open("/book-"+category_name+"-online/"+location,"_self");
             } else{
+                setCookie();
                 window.open("/book-"+category_name+"-online","_self");
             }
         } else{

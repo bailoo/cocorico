@@ -31,7 +31,7 @@ class GeocodingController extends Controller
      * @Route("/{id}/create", name="cocorico_geo_create", requirements={
      *      "id" = "\d+"
      * })
-     * @Method("POST")
+     * @Method({"GET", "POST"})
      * @ParamConverter("coordinate", class="Cocorico\GeoBundle\Entity\Coordinate")
      *
      * @param Coordinate $coordinate

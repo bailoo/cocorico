@@ -22,14 +22,13 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Listing controller.
  *
- * @Route("/listing")
  */
 class ListingController extends Controller
 {
     /**
      * Creates a new Listing entity.
      *
-     * @Route("/new", name="cocorico_listing_new")
+     * @Route("/listing/new", name="cocorico_listing_new")
      *
      * @Security("not has_role('ROLE_ADMIN')")
      *
@@ -98,14 +97,14 @@ class ListingController extends Controller
      * Finds and displays a Listing entity.
      *
      * @Route("/{slug}/show", name="cocorico_listing_show", requirements={
-     *      "slug" = "[a-z0-9-]+$"
+     *      "slug" = "[^/]+"
      * })
      * @Method("GET")
      * @Security("is_granted('view', listing)")
-     * @ParamConverter("listing", class="Cocorico\CoreBundle\Entity\Listing", options={"repository_method" = "findOneBySlug"})
      *
      * @param Request $request
      * @param Listing $listing
+     * @ParamConverter("listing", class="Cocorico\CoreBundle\Entity\Listing", options={"repository_method" = "findOneBySlug"})
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

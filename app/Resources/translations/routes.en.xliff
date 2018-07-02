@@ -223,10 +223,6 @@
             <source>/listing/import</source>
             <target>/listing/import</target>
         </trans-unit>
-      <trans-unit id="57788c2fa8f84367312cce7e03b4c257e1d11b42" resname="cocorico_listing_show">
-        <source>/listing/{slug}/show</source>
-        <target>/listing/{slug}/show</target>
-      </trans-unit>
       <trans-unit id="d58e9c6ae3761d6f7e0e601f6455b43ace3a666f" resname="cocorico_listing_similar">
         <source>/listing/similar_result/{id}</source>
         <target>/listing/similar_result/{id}</target>
@@ -350,6 +346,10 @@
       <trans-unit id="" resname="cocorico_listing_search_new_result">
         <source>/book-{category}-online/{location}/{eventName}</source>
         <target>/book-{category}-online/{location}/{eventName}</target>
+      </trans-unit>
+      <trans-unit id="57788c2fa8f84367312cce7e03b4c257e1d11b42" resname="cocorico_listing_show">
+        <source>/{slug}/show</source>
+        <target>/{slug}/show</target>
       </trans-unit>
       <trans-unit id="" resname="cocorico_geo_import">
         <source>/listing/geocode</source>

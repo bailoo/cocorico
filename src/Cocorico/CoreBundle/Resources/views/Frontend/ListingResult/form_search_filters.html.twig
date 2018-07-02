@@ -119,7 +119,7 @@
             } else{
                 location = location.slice(0,index);
             }
-            location = location.replace(", ","-");
+            location = location.replace(/\, /g,"-");   //replaces all occurrence of ', ' by '-'
             location = location.replace(" ","-");
             location = location.toLowerCase();
             return location;

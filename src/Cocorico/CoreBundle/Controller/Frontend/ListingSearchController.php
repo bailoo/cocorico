@@ -80,6 +80,7 @@ class ListingSearchController extends Controller
         $event = new ListingSearchActionEvent($request);
         $this->get('event_dispatcher')->dispatch(ListingSearchEvents::LISTING_SEARCH_ACTION, $event);
         $extraViewParams = $event->getExtraViewParams();
+        var_dump($listingSearchRequest->getCharacteristics());
 
         return $this->render(
             '@CocoricoCore/Frontend/ListingResult/result.html.twig',

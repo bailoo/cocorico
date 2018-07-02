@@ -72,6 +72,8 @@ class BreadcrumbsManager implements TranslationContainerInterface
 
         if (isset($breadcrumbLinks[$routeName]) && is_array($breadcrumbLinks[$routeName])) {
 
+//            var_dump("addItemsFromYAML");
+
             $this->addPreItems($request, strpos($routeName, 'dashboard') !== false);
 
             foreach ($breadcrumbLinks[$routeName] as $breadcrumb) {

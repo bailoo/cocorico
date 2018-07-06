@@ -18,6 +18,7 @@ use Cocorico\CoreBundle\Model\DateRange;
 use Cocorico\CoreBundle\Model\ListingLocationSearchRequest;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use http\Env\Response;
 use MongoDB\BSON\UTCDateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -43,37 +44,44 @@ class ListingSearchNewController extends Controller
      */
     public function searchNewAction(Request $request, $category, $location=null, $eventName = null)
     {
-        /** @var ListingSearchRequest $listingSearchRequest */
-        $listingSearchRequest = $this->get('cocorico.listing_search_request');
+//        $memcache = $this->get('memcache.default');
 
-        $category_id = array();
-        $cat = $this->getDoctrine()->getRepository(ListingCategory::class)->findAll();
-        if($category == 'anchor'){$category = 'Anchor/Emcee';}
-        else if($category == 'band'){$category = 'Live Band';}
-        else if($category == 'celebrity'){$category = 'Celebrity Appearance';}
-        else if($category == 'photographer'){$category = 'Photo/Videographer';}
-        else if($category == 'dancer'){$category = 'Dancer/Troupe';}
-        else if ($category == 'variety-artist'){$category = 'Variety Artist';}
-        else if ($category == 'makeup-artist'){$category = 'Makeup Artist/Stylist';}
-        foreach ($cat as $item){
-            if($item->translate()->getName() == ucwords($category)){
-                array_push($category_id,$item->getId());
-                break;
+//        if($memcache->get($category.'.'.$location.'.'.$eventName)){
+//            $memcacheData = $memcache->get($category.'-'.$location.'-'.$eventName);
+//            print_r($memcache->get($category.'.'.$location.'.'.$eventName));
+//        } else{
+
+            /** @var ListingSearchRequest $listingSearchRequest */
+            $listingSearchRequest = $this->get('cocorico.listing_search_request');
+
+            $category_id = array();
+            $cat = $this->getDoctrine()->getRepository(ListingCategory::class)->findAll();
+            if($category == 'anchor'){$category = 'Anchor/Emcee';}
+            else if($category == 'band'){$category = 'Live Band';}
+            else if($category == 'celebrity'){$category = 'Celebrity Appearance';}
+            else if($category == 'photographer'){$category = 'Photo/Videographer';}
+            else if($category == 'dancer'){$category = 'Dancer/Troupe';}
+            else if ($category == 'variety-artist'){$category = 'Variety Artist';}
+            else if ($category == 'makeup-artist'){$category = 'Makeup Artist/Stylist';}
+            foreach ($cat as $item){
+                if($item->translate()->getName() == ucwords($category)){
+                    array_push($category_id,$item->getId());
+                    break;
+                }
             }
-        }
-        if(!count($category_id)){
-            die("Invalid Category");
-        }
+            if(!count($category_id)){
+                die("Invalid Category");
+            }
 
-        $listingSearchRequest->setCategories($category_id);
-        $request->query->add(array('categories' => $category_id));
+            $listingSearchRequest->setCategories($category_id);
+            $request->query->add(array('categories' => $category_id));
 
-        /** @var ListingLocationSearchRequest $searchLocation */
-        $searchLocation = new ListingLocationSearchRequest($request->getLocale());
+            /** @var ListingLocationSearchRequest $searchLocation */
+            $searchLocation = new ListingLocationSearchRequest($request->getLocale());
 
-        if($location){
+            if($location){
                 $cookies = $request->cookies;
-            $checkCookies = false;
+                $checkCookies = false;
 
                 if($cookies->has('address')) {
                     if ($location == $cookies->get('address')) {
@@ -100,36 +108,36 @@ class ListingSearchNewController extends Controller
                     $searchLocation->setZip($zip);
 
                 } else{
-                        $location_json = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$location."&key=AIzaSyA7M_p1ZRJBBv-i1qmmCWkstyQvuZAg7iQ");
-                        $parsedLocation = json_decode($location_json, true)['results'][0];
+                    $location_json = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?address=".$location."&key=AIzaSyA7M_p1ZRJBBv-i1qmmCWkstyQvuZAg7iQ");
+                    $parsedLocation = json_decode($location_json, true)['results'][0];
 
-                        $addressType = implode(',', $parsedLocation['types']);
-                        $location = str_replace('-',' ', $location);
+                    $addressType = implode(',', $parsedLocation['types']);
+                    $location = str_replace('-',' ', $location);
 
-                        foreach ($parsedLocation['address_components'] as $component){
-                            $types = $component['types'];
-                            foreach ($types as $type){
-                                $value = $component['long_name'];
-                                if($type == 'political'){
-                                    break;
-                                } else if($type == 'country'){
-                                    $searchLocation->setCountry($component['short_name']);
-                                } else if($type == 'locality'){
-                                    $searchLocation->setCity($value);
-                                } else if($type == 'administrative_area_level_1'){
-                                    $searchLocation->setArea($value);
-                                } else if($type == 'administrative_area_level_2'){
-                                    $searchLocation->setDepartment($value);
-                                } else if($type == 'postal_code'){
-                                    $searchLocation->setZip($value);
-                                }
+                    foreach ($parsedLocation['address_components'] as $component){
+                        $types = $component['types'];
+                        foreach ($types as $type){
+                            $value = $component['long_name'];
+                            if($type == 'political'){
+                                break;
+                            } else if($type == 'country'){
+                                $searchLocation->setCountry($component['short_name']);
+                            } else if($type == 'locality'){
+                                $searchLocation->setCity($value);
+                            } else if($type == 'administrative_area_level_1'){
+                                $searchLocation->setArea($value);
+                            } else if($type == 'administrative_area_level_2'){
+                                $searchLocation->setDepartment($value);
+                            } else if($type == 'postal_code'){
+                                $searchLocation->setZip($value);
                             }
                         }
+                    }
 
-                        $lat = $parsedLocation['geometry']['location']['lat'];
-                        $lng = $parsedLocation['geometry']['location']['lng'];
-                        $searchViewport = $parsedLocation['geometry']['viewport'];
-                        $viewport = '(('.$searchViewport["southwest"]["lat"].', '.$searchViewport["southwest"]["lng"].'), ('.$searchViewport["northeast"]["lat"].', '.$searchViewport["northeast"]["lng"].'))';
+                    $lat = $parsedLocation['geometry']['location']['lat'];
+                    $lng = $parsedLocation['geometry']['location']['lng'];
+                    $searchViewport = $parsedLocation['geometry']['viewport'];
+                    $viewport = '(('.$searchViewport["southwest"]["lat"].', '.$searchViewport["southwest"]["lng"].'), ('.$searchViewport["northeast"]["lat"].', '.$searchViewport["northeast"]["lng"].'))';
                 }
 
                 $searchLocation->setLat($lat);
@@ -156,93 +164,119 @@ class ListingSearchNewController extends Controller
                         )
                     )
                 );
-        } else{
-            $viewport = '((-90, -180), (90, 180))';
-            $searchLocation->setViewport($viewport);
-        }
-        $listingSearchRequest->setLocation($searchLocation);
-
-        if($eventName){
-            $eventName = str_replace('-', ' ', $eventName);
-            $eventName = ucwords($eventName);
-            if($eventName == 'Concert Festival'){$eventName = 'Concert/Festival';}
-            elseif ($eventName == 'Photo Video Shoot'){$eventName = 'Photo/Video Shoot';}
-
-            $characteristics = $this->getDoctrine()->getRepository('CocoricoCoreBundle:ListingCharacteristic')->findAll();
-            foreach ($characteristics as $component){
-                if($component->getName() == 'Event Types'){
-                    $characteristic = $component;
-                    break;
-                }
+            } else{
+                $viewport = '((-90, -180), (90, 180))';
+                $searchLocation->setViewport($viewport);
             }
+            $listingSearchRequest->setLocation($searchLocation);
 
-            $eventTypes = $this->getDoctrine()->getRepository('CocoricoCoreBundle:ListingCharacteristicValue')->findBy(array('listingCharacteristicType' => $characteristic->getListingCharacteristicType()));
-            foreach ($eventTypes as $eventType){
-                if($eventType->getName() == ucfirst($eventName)){
-                    $event = $eventType;
-                    break;
+            if($eventName){
+                $eventName = str_replace('-', ' ', $eventName);
+                $eventName = ucwords($eventName);
+                if($eventName == 'Concert Festival'){$eventName = 'Concert/Festival';}
+                elseif ($eventName == 'Photo Video Shoot'){$eventName = 'Photo/Video Shoot';}
+
+                $characteristics = $this->getDoctrine()->getRepository('CocoricoCoreBundle:ListingCharacteristic')->findAll();
+                foreach ($characteristics as $component){
+                    if($component->getName() == 'Event Types'){
+                        $characteristic = $component;
+                        break;
+                    }
                 }
-            }
 
-            $id = (int)$characteristic->getId();
-            $listingCharacteristic = array();
-            $listingCharacteristic[$id] = $eventType->getId();
-            $listingSearchRequest->setCharacteristics($listingCharacteristic);
+                $eventTypes = $this->getDoctrine()->getRepository('CocoricoCoreBundle:ListingCharacteristicValue')->findBy(array('listingCharacteristicType' => $characteristic->getListingCharacteristicType()));
+                foreach ($eventTypes as $eventType){
+                    if($eventType->getName() == ucfirst($eventName)){
+                        $event = $eventType;
+                        break;
+                    }
+                }
+
+                $id = (int)$characteristic->getId();
+                $listingCharacteristic = array();
+                $listingCharacteristic[$id] = $eventType->getId();
+                $listingSearchRequest->setCharacteristics($listingCharacteristic);
 //            var_dump($listingSearchRequest->getCharacteristics());
-        }
+            }
 
-        // searches and returns relevant listings
-        $listingSearchRequest->setMaxPerPage(30);
-        $results = $this->get("cocorico.listing_search.manager")->search(
-            $listingSearchRequest,
-            'en'
-        );
-        $nbListings = $results->count();
-        $listings = $results->getIterator();
-        $markers = $this->getMarkers($request, $results, $listings);
+            // searches and returns relevant listings
+            $listingSearchRequest->setMaxPerPage(30);
+            $results = $this->get("cocorico.listing_search.manager")->search(
+                $listingSearchRequest,
+                'en'
+            );
+            $nbListings = $results->count();
+            $listings = $results->getIterator();
+            $markers = $this->getMarkers($request, $results, $listings);
 
 //        //Persist similar listings id
-        $listingSearchRequest->setSimilarListings(array_column(array_column($markers, 0), 'id'));
+            $listingSearchRequest->setSimilarListings(array_column(array_column($markers, 0), 'id'));
 
 //        //Persist listing search request in session
-        $this->get('session')->set('listing_search_request', $listingSearchRequest);
+            $this->get('session')->set('listing_search_request', $listingSearchRequest);
 
-        $form = $this->createSearchResultForm($listingSearchRequest);
+            $form = $this->createSearchResultForm($listingSearchRequest);
 
 
-        //Breadcrumbs
-        $breadcrumbs = $this->get('cocorico.breadcrumbs_manager');
-        $breadcrumbs->addListingResultItems($this->get('request_stack')->getCurrentRequest(), $listingSearchRequest);
+            //Breadcrumbs
+            $breadcrumbs = $this->get('cocorico.breadcrumbs_manager');
+            $breadcrumbs->addListingResultItems($this->get('request_stack')->getCurrentRequest(), $listingSearchRequest);
 
-        //Add params to view through event listener
-        $event = new ListingSearchActionEvent($request);
-        $this->get('event_dispatcher')->dispatch(ListingSearchEvents::LISTING_SEARCH_ACTION, $event);
-        $extraViewParams = $event->getExtraViewParams();
+            //Add params to view through event listener
+            $event = new ListingSearchActionEvent($request);
+            $this->get('event_dispatcher')->dispatch(ListingSearchEvents::LISTING_SEARCH_ACTION, $event);
+            $extraViewParams = $event->getExtraViewParams();
 
-        if(!$request->query->get('page')){
-            $request->query->add(array('page' => '1'));
-        }
+            if(!$request->query->get('page')){
+                $request->query->add(array('page' => '1'));
+            }
 
 //        $listingSearchRequest->setPage($request->query->get('page'));
 //        var_dump($request->query->get('characteristics['.$id.']'));
+
+            //set memcache
+            $memcacheData = array();
+            $memcacheData['form'] = $form->createView();
+            $memcacheData['$listings'] = $listings;
+            $memcacheData['nb_listings'] = $nbListings;
+            $memcacheData['markers'] = $markers;
+            $memcacheData['listing_search_request'] = $listingSearchRequest;
+            $memcacheData['pagination'] = array(
+                'page' => $listingSearchRequest->getPage(),
+                'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
+                'route' => $request->get('_route'),
+                'route_params' => $request->query->all()
+            );
+            $memcacheData['extraViewParams'] = $extraViewParams;
+
+//            $memcache->set($category.'-'.$location.'-'.$eventName, $memcacheData, 0);
+
+//        }
 
         return $this->render(
             '@CocoricoCore/Frontend/ListingResult/result.html.twig',
             array_merge(
                 array(
-                    'form' => $form->createView(),
-                    'listings' => $listings,
-                    'nb_listings' => $nbListings,
-                    'markers' => $markers,
+                    'form' => $memcacheData['form'],
+                    'listings' => $memcacheData['$listings'],
+                    'nb_listings' => $memcacheData['nb_listings'],
+                    'markers' => $memcacheData['markers'],
                     'listing_search_request' => $listingSearchRequest,
+//                    'pagination' => $memcacheData['pagination'],
                     'pagination' => array(
-                        'page' => $listingSearchRequest->getPage(),
-                        'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
-                        'route' => $request->get('_route'),
-                        'route_params' => $request->query->all()
+                        'page' => $memcacheData['pagination']['page'],
+                        'pages_count' => $memcacheData['pagination']['pages_count'],
+                        'route' => $memcacheData['pagination']['route'],
+                        'route_params' => $memcacheData['pagination']['route_params']
                     ),
+//                    'pagination' => array(
+//                        'page' => $listingSearchRequest->getPage(),
+//                        'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
+//                        'route' => $request->get('_route'),
+//                        'route_params' => $request->query->all()
+//                    ),
                 ),
-                $extraViewParams
+                $memcacheData['extraViewParams']
             )
         );
 

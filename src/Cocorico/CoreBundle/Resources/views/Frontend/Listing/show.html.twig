@@ -50,13 +50,13 @@
 
         {% block breadcrumbs %}
             <!-- breadcrumbs -->
-            {{ render(controller('CocoricoBreadcrumbBundle:Breadcrumbs:index',{
-                request: app.request
-            })) }}
+            {#{{ render(controller('CocoricoBreadcrumbBundle:Breadcrumbs:index',{#}
+                {#request: app.request#}
+            {#})) }}#}
         {% endblock %}
 
         {% block main %}
-            {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:searchForm')) }}
+            {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearchNew:searchForm')) }}
 
             <!-- two-columns -->
             <div class="twocolumns row alt">
@@ -219,7 +219,7 @@
                                 <div class="tab-content">
                                     <!-- description -->
                                     <div role="tabpanel" class="tab-pane active" id="description">
-                                        <p>{{ listing_description|nl2br }}</p>
+                                        <p>{{ listing_description|raw }}</p>
                                     </div>
                                     <!-- conditions -->
                                     <div role="tabpanel" class="tab-pane" id="conditions">

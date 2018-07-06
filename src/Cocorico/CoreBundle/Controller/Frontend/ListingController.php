@@ -96,8 +96,8 @@ class ListingController extends Controller
     /**
      * Finds and displays a Listing entity.
      *
-     * @Route("/{slug}/show", name="cocorico_listing_show", requirements={
-     *      "slug" = "[^/]+"
+     * @Route("/{slug}", name="cocorico_listing_show", requirements={
+     *      "slug" = "^(?!book-\/).*(?<!\-online)$"
      * })
      * @Method("GET")
      * @Security("is_granted('view', listing)")

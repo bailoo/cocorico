@@ -45,6 +45,7 @@ class AppKernel extends Kernel
             new FM\ElfinderBundle\FMElfinderBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+            new Lsw\MemcacheBundle\LswMemcacheBundle(),
             new Cocorico\CoreBundle\CocoricoCoreBundle(),
             new Cocorico\GeoBundle\CocoricoGeoBundle(),
             new Cocorico\UserBundle\CocoricoUserBundle(),

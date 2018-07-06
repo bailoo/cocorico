@@ -69,7 +69,8 @@
     "egulias/email-validator": "~1.2",
     "simplethings/entity-audit-bundle": "^0.9",
     "mrclay/minify": "^2.2",
-    "patchwork/jsqueeze": "^2.0"
+    "patchwork/jsqueeze": "^2.0",
+    "leaseweb/memcache-bundle": "*"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
